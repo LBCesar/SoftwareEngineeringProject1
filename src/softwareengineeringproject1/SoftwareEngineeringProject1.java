@@ -27,23 +27,74 @@ public class SoftwareEngineeringProject1 {
     /**
      * @param args the command line arguments
      */
-    public static class ATM {
+    public static class ATM extends bank {
 
-        private float money;
+        private float money = 50000;
+
+        public int input() {
+            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+            return myObj.nextInt();
+        }
+
+        public void display() {//Transfer funds needed. 
+            while (true) {
+                System.out.println("ATM");
+                System.out.print("Account number:");
+                int userName = input();
+                System.out.print("Enter pin:");
+                int pin = input();
+
+                System.out.println(" ______________________");
+                System.out.println("|[1] View Balance      |");
+                //another screen to show balance;
+                System.out.println("|[2] Withdraw Cash     |");
+                //most important use case
+                //Show different options of money 
+                // multiples of 20
+                //Cancel the transaction
+                //if balance < withdraw.
+                // Re calculate.
+
+                System.out.println("|[3] Deposit Cash      |");
+                //Cancel transaction.
+                System.out.println("|[4] Exit              |");
+                System.out.println("|______________________|");
+                int choice = input();
+                if (choice < 0 || choice > 3) {
+                    System.out.println("Bye");
+                    break;
+                }
+                if (choice == 1) {
+
+                }
+                if (choice == 2) {
+
+                }
+
+            }
+        }
+
+        public void cashOut(int out) {
+            money = money - out;
+        }
+
+        public void cashIn(int in) {
+            money = money + in;
+        }
 
         public void balance() {
-                        
+
         }
 
         public float withdraw() {
-        System.out.println(" _____________________");
-        System.out.println("|[1] $20      [5] $100|");
-        System.out.println("|[2] $40      [6] $120|");
-        System.out.println("|[3] $60      [7] $140|");
-        System.out.println("|[4] $80      [8] Exit|");
-        System.out.println("|_____________________|");
-        //Update the money in the ATM
-            money=money-10;
+            System.out.println(" _____________________");
+            System.out.println("|[1] $20      [5] $100|");
+            System.out.println("|[2] $40      [6] $120|");
+            System.out.println("|[3] $60      [7] $140|");
+            System.out.println("|[4] $80      [8] Exit|");
+            System.out.println("|_____________________|");
+            //Update the money in the ATM
+            money = money - 10;
             //Update the money in the customers account.
             //c.withdraw(money);
             return 10;
@@ -54,84 +105,33 @@ public class SoftwareEngineeringProject1 {
 
     }
 
-    public static class Hash328<K, V> {
+    public static class bank {
 
-        private double loadFactor = 0.5;
-        private int size = 0;
-        private int capacity = 20;
-        private Entry[] table;
+        ArrayList<customer> accounts = new ArrayList<customer>();
 
-        private class Entry<K, V> {
-
-            Entry<K, V> next = null;
-            K key;
-            V value;
-
-            Entry(K key, V value) {
-                this.key = key;
-                this.value = value;
-            }
-
-            K getKey() {
-                return this.key;
-            }
-
-            V getValue() {
-                return this.value;
-            }
-
-            V updateValue(V value) {
-                V temp = this.value;
-                this.value = value;
-                return temp;
-            }
-        }
-        //Constructor
-
-        Hash328() {
-            table = new Entry[capacity];
+        public void add(customer e) {
+            accounts.add(e);
         }
 
-        void associate(K key, V value) {
-            int hash = Math.abs(key.hashCode()) % capacity;
-            if (table[hash] != null) {
-                Entry<K, V> curr = table[hash];
-                Entry<K, V> prev = null;
-                while (curr != null && !(curr.getKey().equals(key))) {
-                    prev = curr;
-                    curr = curr.next;
-                }
-                if (curr != null) {
-                    curr.updateValue(value);
-                } else {
-                    prev.next = new Entry<>(key, value);
-                    size++;
-                }
-            } else {
-                table[hash] = new Entry<>(key, value);
-                size++;
-            }
-
+        public int size() {
+            return accounts.size();
         }
 
-        V find(K from) {
-            int hash = Math.abs(from.hashCode() % capacity);
-            Entry<K, V> curr = table[hash];
-            while (curr != null && !(curr.getKey().equals(from))) {
-                curr = curr.next;
+        public void print() {
+            for (int i = 0; i < accounts.size(); i++) {
+                System.out.println(accounts.get(i).name);
+                System.out.println(accounts.get(i).balance);
             }
-            return (curr == null) ? null : curr.getValue();
         }
 
     }
 
-    public static class customer {
+    public static class customer extends bank {
 
         private String name;
         private double balance;
 
         private customer(String name, int i) {
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             this.name = name;
             balance = i;
         }
@@ -158,64 +158,16 @@ public class SoftwareEngineeringProject1 {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Hash328<Integer, customer> h = new Hash328<Integer, customer>();
+        bank b = new bank();
         customer c;
-        ATM a=new ATM();
-            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-   // System.out.println("Enter username");
-
-        //int userName = myObj.nextInt();
-        a.withdraw();
-        System.out.print("Account number:");
-                int userName = myObj.nextInt();
-
-        System.out.print("Enter pin:");
-        int pin = myObj.nextInt();
-
-        System.out.println(" ______________________");
-        System.out.println("|[1] View Balance      |");
-        //another screen to show balance;
-        System.out.println("|[2] Withdraw Cash     |");
-        //most important use case
-        //Show different options of money 
-        // multiples of 20
-        //Cancel the transaction
-        //if balance < withdraw.
-        // Re calculate.
-
-        System.out.println("|[3] Deposit Cash      |");
-        //Cancel transaction.
-        System.out.println("|[4] Exit              |");
-        System.out.println("|______________________|");
-
-        // customer c= new customer("Cesar", 1.12);
-        // c.customer("Cesar", 1.12);
-        //  int pw=123456;
-        /// h.associate(pw, c);
-        System.out.println("Done");
         for (int i = 0; i < 10; i++) {
-            //c=new customer("Name",i);
-            h.associate(i, new customer("Name", i));
-        }
-
-        int size = h.table.length;
-        for (int i = 0; i < size - 1; i++) {
-            
-            //   System.out.println(h.table[i].key);
+            c = new customer("Name", i);
+            b.add(c);
 
         }
+        System.out.println("This bank has " + b.size() + " accounts.");
+        b.print();
 
     }
 
 }
-
-/*
-menu .. pin number..console window ok
-
-4 option
-withdraw cash
-view baalnce
-deposit funds
-exit.
-
-*/
