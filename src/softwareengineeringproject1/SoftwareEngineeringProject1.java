@@ -27,17 +27,10 @@ public class SoftwareEngineeringProject1 {
     /**
      * @param args the command line arguments
      */
-    public static class ATM extends bank {
-
-        private float money = 50000;
-
-        public int input() {
-            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-            return myObj.nextInt();
-        }
-
-        public void display() {//Transfer funds needed. 
-            while (true) {
+    public static class display extends ATM{
+       
+        public void  screen(){
+                while (true) {
                 System.out.println("ATM");
                 System.out.print("Account number:");
                 int userName = input();
@@ -73,6 +66,33 @@ public class SoftwareEngineeringProject1 {
 
             }
         }
+        
+        
+    }
+    public static class input extends ATM{
+        public int keypad(){
+            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+            return myObj.nextInt();
+    }
+    }
+    public static class withdraw extends ATM{
+        //Money out
+    }
+    public static class deposit extends ATM{
+        //Money in
+    }
+    public static class ATM extends bank {
+
+        private float money = 50000;
+
+        public int input() {
+            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+            return myObj.nextInt();
+        }
+
+        public void display() {//Transfer funds needed. 
+
+        }
 
         public void cashOut(int out) {
             money = money - out;
@@ -104,7 +124,6 @@ public class SoftwareEngineeringProject1 {
         }
 
     }
-
     public static class bank {
 
         ArrayList<customer> accounts = new ArrayList<customer>();
@@ -125,7 +144,6 @@ public class SoftwareEngineeringProject1 {
         }
 
     }
-
     public static class customer extends bank {
 
         private String name;
