@@ -94,22 +94,22 @@ public class SoftwareEngineeringProject1 {
             return x;
         }
     }
-
-    public static class withdraw extends ATM {//Called from the ATM object
-        //Money out
-        public void work(customer c) {// Passed in a customer object, u can now check all of thier attributes.
-            System.out.println(c.balance);
-            System.out.println();
-        }
-    }
-
-    public static class deposit extends ATM {//Will be called from the ATM object.
-        //Money in
-            public void work(customer c) {// Passed in a customer object, u can now check all of thier attributes.
-            System.out.println(c.balance);
-            System.out.println();
-        }
-    }
+//Removed on 3/2
+//    public static class withdraw extends ATM {//Called from the ATM object
+//        //Money out
+//        public void work(customer c) {// Passed in a customer object, u can now check all of thier attributes.
+//            System.out.println(c.balance);
+//            System.out.println();
+//        }
+//    }
+//Removed on 3/2
+//    public static class deposit extends ATM {//Will be called from the ATM object.
+//        //Money in
+//            public void work(customer c) {// Passed in a customer object, u can now check all of thier attributes.
+//            System.out.println(c.balance);
+//            System.out.println();
+//        }
+//    }
 
     public static class ATM extends bank {
 
@@ -175,11 +175,15 @@ public class SoftwareEngineeringProject1 {
         }
 
     }
+    public static class account{
+        
+    }
 
     public static class customer extends bank {
 
         private String name;
         private double balance;
+        account a;
 
         private customer(String name, int i) {
             this.name = name;
