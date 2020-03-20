@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package softwareengineeringproject1;
 
 import java.util.*;
@@ -24,18 +19,15 @@ import java.util.*;
  */
 public class SoftwareEngineeringProject1 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static class display extends ATM {
 
         public void screen() {
-                            System.out.println("ATM");
-                System.out.print("Account number:");
-                System.out.print("Enter pin:");
+            System.out.println("ATM");
+            System.out.print("Account number:");
+            System.out.print("Enter pin:");
             while (true) {
-                            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-                 // int x = myObj.nextInt();
+                Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+                // int x = myObj.nextInt();
 
                 System.out.println("\n ______________________");
                 System.out.println("|[1] View Balance      |");
@@ -50,75 +42,46 @@ public class SoftwareEngineeringProject1 {
                     break;
                 }
                 if (choice == 1) {
-                    checkBalanceD();
+                    checkBalanceDisplay();
                 }
                 if (choice == 2) {
-                    withdrawD();
+                    withdrawDisplay();
                 }
                 if (choice == 3) {
-                    depositD();
+                    depositDisplay();
                 }
                 if (choice == 4) {
-                    transferD();
+                    transferDisplay();
                 }
 
             }
         }
 
-        void checkBalanceD() {
+        void checkBalanceDisplay() {
             System.out.println("Display balance here");
-            //ATM.cashOut -> withdraw.work(customer)
-
-            cashOut();
+            //checkings or savings?
         }
 
-        void depositD() {
+        void depositDisplay() {
             System.out.print("Deposit amount: ");
-            //Increment the customers balance and the ATM balance.
+            //checkings or savings?
         }
 
-        void withdrawD() {
+        void withdrawDisplay() {
             System.out.println(" _____________________");
             System.out.println("|[1] $20      [5] $100|");
             System.out.println("|[2] $40      [6] $120|");
             System.out.println("|[3] $60      [7] $140|");
             System.out.println("|[4] $80      [8] Exit|");
             System.out.println("|_____________________|");
-            //Check to see whther the customer has money.
+            //checking or savings?
 
         }
 
-        void transferD() {
+        void transferDisplay() {
             System.out.println(" We will trasnfer here");
         }
-
-        //return;
     }
-//Removed 3/13
-//    public static class input extends ATM {//All this class does is create a scanner object and returns ints.
-//
-//        public int keypad2() {
-//            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-//            int x = myObj.nextInt();
-//            return x;
-//        }
-//    }
-//Removed on 3/2
-//    public static class withdraw extends ATM {//Called from the ATM object
-//        //Money out
-//        public void work(customer c) {// Passed in a customer object, u can now check all of thier attributes.
-//            System.out.println(c.balance);
-//            System.out.println();
-//        }
-//    }
-//Removed on 3/2
-//    public static class deposit extends ATM {//Will be called from the ATM object.
-//        //Money in
-//            public void work(customer c) {// Passed in a customer object, u can now check all of thier attributes.
-//            System.out.println(c.balance);
-//            System.out.println();
-//        }
-//    }
 
     public static class ATM {
 
@@ -129,100 +92,87 @@ public class SoftwareEngineeringProject1 {
             screen.screen();
         }
 
-
-
-        public void cashOut() {//Calls the withdraw class
-            //money = money - out;
-
-
-        }
-
-        public void cashIn(int in) {//Calls the deposit class.
-            money = money + in;
-        }
-
         public void balance() {
-
         }
-
-        public float withdraw() {//Might delete
-            //Update the money in the ATM
-            money = money - 10;
-            //Update the money in the customers account.
-            //c.withdraw(money);
+        public float withdraw(float amount) {
             return 10;
         }
 
-        public void deposit(float amount) {//Might delete
+        public void deposit(float amount) {
+        }
+
+        public void transfer(float amount) {
         }
 
     }
-//Removed 2/13
-//    public static class bank {
-//
-//        static ArrayList<customer> accounts = new ArrayList<customer>();
-//
-//        public void add(customer e) {
-//            accounts.add(e);
-//        }
-//
-//        public int size() {
-//            return accounts.size();
-//        }
-//
-//        public void print() {
-//            for (int i = 0; i < accounts.size(); i++) {
-//                System.out.println(accounts.get(i).name);
-//                System.out.println(accounts.get(i).balance);
-//            }
-//        }
-//
-//    }
+
 
     public static class checkingAccount {
-
+        private float balance;
+        private int accountNumber;
+        public void getBalance(){
+        }
+        public void setBalance(float amount){
+        }
+        public int getAccountNumber(){
+        return accountNumber;
+        }
+        public void setAccountNumber(int number){
+        }
     }
-
-    public static class savingAccount {
-
+    public static class savingsAccount {
+        private float balance;
+        private int accountNumber;
+        public void getBalance(){
+        }
+        public void setBalance(float amount){
+        }
+        public int getAccountNumber(){
+        return accountNumber;
+        }
+        public void setAccountNumber(int number){
+        }
     }
 
     public static class customer{
 
         private String name;
-        private double balance;
+        private String email;
+        private String address;
+        private int cardNumber;
+        private int pin;
+        
         checkingAccount ca;
-        savingAccount sa;
+        savingsAccount sa;
 
-        private customer(String name, int i) {
-            this.name = name;
-            balance = i;
-        }
-
-        public void customer(String n, double b) {
+        public void customer(String n,String e,String a,int c,int p,float b1,int a1,float b2,int a2) {
             name = n;
-            balance = b;
+            email=e;
+            address=a;
+            cardNumber=c;
+            pin=p;
+            ca.setBalance(b1);
+            ca.setAccountNumber(a1);
+            sa.setBalance(b2);
+            sa.setAccountNumber(a2);
         }
 
-        public void deposit(float m) {
-            balance = m;
+        public void deposit(float amount) {
         }
 
-        public float withdraw(float m) {
-            balance = balance - m;
-            return m;
+        public float withdraw(float amount) {
+            return amount;
         }
 
         public void balance() {
-            System.out.println(balance);
+            System.out.println();
+        }
+        public void transfer(){
+            
         }
     }
-
     public static void main(String[] args) {
-        // TODO code application logic here
         ATM a = new ATM();
         a.start();
-
     }
-
 }
