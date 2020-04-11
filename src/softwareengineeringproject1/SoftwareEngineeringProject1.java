@@ -120,6 +120,7 @@ public class SoftwareEngineeringProject1 {
         public void setAccountNumber(int number){
         }
     }
+    
     public static class savingsAccount {
         private float balance;
         private int accountNumber;

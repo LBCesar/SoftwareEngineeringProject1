@@ -3,7 +3,7 @@
  * 
  */
 
-public class Display {
+public class Display extends ATM{
     
     public void screen() {
         System.out.println("ATM");
