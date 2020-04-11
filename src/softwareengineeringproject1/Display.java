@@ -1,29 +1,27 @@
-
 /**
  * 
  */
 
-public class Display extends ATM{
+ import java.util.*;
+
+// public class Display extends ATM{
+public class Display{
     
     public void screen() {
-        System.out.println("ATM");
-        System.out.print("Account number:");
-        System.out.print("Enter pin:");
+
+        System.out.println("PROJECT ATM\n");
+        System.out.print("Account number:\n");
+        System.out.print("Enter pin:\n");
+
         while (true) {
             Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-            // int x = myObj.nextInt();
 
-            System.out.println("\n ______________________");
-            System.out.println("|[1] View Balance      |");
-            System.out.println("|[2] Withdraw Cash     |");
-            System.out.println("|[3] Deposit Cash      |");
-            System.out.println("|[4] Transfer          |");
-            System.out.println("|[5] Exit              |");
-            System.out.println("|______________________|");
+            mainMenu();
+
             int choice = myObj.nextInt();
 
             if (choice < 0 || choice > 4) {
-                System.out.println("Bye");
+                System.out.println("Exit.");
                 break;
             }
 
@@ -44,6 +42,7 @@ public class Display extends ATM{
             }
 
         }
+
     }
 
 
@@ -53,6 +52,15 @@ public class Display extends ATM{
 
 
     public void mainMenu(){
+
+        System.out.println("\n|_____________________|");
+        System.out.println("|     Main Menu         |");
+        System.out.println("|[1] View Balance      |");
+        System.out.println("|[2] Withdraw Cash     |");
+        System.out.println("|[3] Deposit Cash      |");
+        System.out.println("|[4] Transfer          |");
+        System.out.println("|[5] Exit              |");
+        System.out.println("|______________________|");
 
     }
 
@@ -84,9 +92,9 @@ public class Display extends ATM{
 
 
     public static void main(String[] args) {
-        
+        Display dis = new Display();
 
+        dis.screen();
     }
-
 
 }

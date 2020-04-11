@@ -9,6 +9,7 @@ package softwareengineeringproject1;
  *
  * @author Cesar Gonzalez
  */
+
 public class BankCustomer {
    // public static class customer{
 
