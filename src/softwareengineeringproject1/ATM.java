@@ -5,13 +5,21 @@
 
 
 import java.util.*;
+import softwareengineeringproject1.BankCustomer;
 
 public class ATM {
 
     private double amount;
+    BankCustomer customer = new BankCustomer();
+    Display display = new Display();
+
+    public ATM(){
+        
+    }
+
 
     public void start() {//Calls the display class.
-        display screen = new display();
+        // Display screen = new Display();
         screen.screen();
     }
 

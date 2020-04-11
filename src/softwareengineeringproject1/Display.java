@@ -52,7 +52,6 @@ public class Display{
 
 
     public void mainMenu(){
-
         System.out.println("\n|_____________________|");
         System.out.println("|     Main Menu         |");
         System.out.println("|[1] View Balance      |");
@@ -61,7 +60,6 @@ public class Display{
         System.out.println("|[4] Transfer          |");
         System.out.println("|[5] Exit              |");
         System.out.println("|______________________|");
-
     }
 
 
@@ -93,7 +91,6 @@ public class Display{
 
     public static void main(String[] args) {
         Display dis = new Display();
-
         dis.screen();
     }
 
