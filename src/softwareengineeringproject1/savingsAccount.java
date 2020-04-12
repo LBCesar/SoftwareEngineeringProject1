@@ -25,15 +25,18 @@ public class savingsAccount {
     }
 
 
+    public void setBalance(double bal){
+        balance = bal;
+    }
+
     public double getBalance(){
         return balance;
     }
     
 
-    // public void setAccountNumber(int number){
-    //     accountNumber = number;
-    // }
-
+    public void setAccountNumber(int assNumber){
+        accountNumber = assNumber;
+    }
 
     public int getAccountNumber(){
         return accountNumber;

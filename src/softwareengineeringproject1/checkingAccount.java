@@ -10,7 +10,7 @@ public class checkingAccount {
     
 
     public checkingAccount(){
-        balance = 0;
+        balance = 0.0;
         accountNumber = 0;
     }
 
@@ -25,15 +25,18 @@ public class checkingAccount {
     }
 
 
+    public void setBalance(double bal){
+        balance = bal;
+    }
+
     public double getBalance(){
         return balance;
     }
     
 
-    // public void setAccountNumber(int number){
-    //     accountNumber = number;
-    // }
-
+    public void setAccountNumber(int aNumber){
+        accountNumber = aNumber;
+    }
 
     public int getAccountNumber(){
         return accountNumber;
