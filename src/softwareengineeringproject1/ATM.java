@@ -16,18 +16,6 @@ public class ATM {
         screen.screen();
     }
 
-    
-    public void deposit(double amount){
-
-    }
-
-    public void withdraw(double amount){
-
-    }
-
-    public void checkBalance() {
-
-    }
 
     public void transfer(double amount){
 
@@ -42,7 +30,7 @@ public class ATM {
         me.setCardNumber(6325);
         me.setPIN(9111);
         me.setCheckingsAccountNumber(4545);
-        me.setCheckingsBalance(1.50);
+        me.setCheckingsBalance(150);
         me.setSavingsAccountNumber(4546);
         me.setSavingsBalance(100);
 
@@ -59,6 +47,27 @@ public class ATM {
         System.out.println("Checkings Balance: " + "$" + customer.get(0).getCheckingsBalance());
         System.out.println("Savings Acc: " + customer.get(0).getSavingsAccountNumber());
         System.out.println("Savings Balance: " + "$" + customer.get(0).getSavingsBalance());
+
+        System.out.println();
+        customer.get(0).checkBalance();
+        System.out.println();
+
+        me.checkingsDeposit(100);
+        System.out.println("After Deposit checkings " + 100 + " : $" + customer.get(0).getCheckingsBalance());
+
+        me.checkingsWithdraw(150);
+        System.out.println("After Checkings withdraw " + 150 + " : $"  + customer.get(0).getCheckingsBalance());
+
+        me.savingsDeposit(100);
+        System.out.println("After Deposit checkings " + 100 + " : $" + customer.get(0).getSavingsBalance());
+
+        me.savingsWithdraw(150);
+        System.out.println("After Deposit checkings " + 150 + " : $" + customer.get(0).getSavingsBalance());
+
+        System.out.println();
+        customer.get(0).checkBalance();
+        System.out.println();
+
     }
 
 }

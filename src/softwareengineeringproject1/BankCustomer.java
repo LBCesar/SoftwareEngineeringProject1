@@ -9,12 +9,12 @@ public class BankCustomer {
     private String address;
     private int cardNumber;
     private int pin;
+    private double totalBalance;
 
     private int savingsAccountNumber;
     private double savingsBalance;
     private int checkingsAccountNumber;
     private double checkingsBalance;
-
 
     private checkingAccount cAccount = new checkingAccount();
     private savingsAccount sAccount = new savingsAccount();
@@ -24,8 +24,7 @@ public class BankCustomer {
 
     }
 
-    // public void BankCustomer(String n, String e, String a, int c, int p, int a1, double b1, int a2, double b2) {
-    public void BankCustomer(String n, String e, String a, int c, int p, int a1, double b1) {
+    public void BankCustomer(String n, String e, String a, int c, int p, int a1, double b1, int a2, double b2) {
         name = n;
         email= e;
         address = a;
@@ -33,31 +32,12 @@ public class BankCustomer {
         pin = p;
         checkingsAccountNumber = a1;
         checkingsBalance = b1;
-        // sAccount.setAccountNumber(a1);
-        // sAccount.setBalance(b1);
-        // cAccount.setAccountNumber(a2);
-        // cAccount.setBalance(b2);
+        savingsAccountNumber = a2;
+        savingsBalance = b2;
     }
 
 
-    // public double deposit(double amount){
-    //     return 0;
-    // }
-
-
-    // public double withdraw(double amount) {
-    //     return amount;
-    // }
-
-
-    // public void balance() {
-    //     System.out.println();
-    // }
-
-
-    // public void transfer(){
-        
-    // }
+// -----------------------------------------------------------------------------
 
 
     public String getName(){
@@ -103,7 +83,10 @@ public class BankCustomer {
     public void setPIN(int pin){
         this.pin = pin;
     }
-    
+
+
+// -----------------------------------------------------------------------------    
+
 
     public int getCheckingsAccountNumber(){
         return checkingsAccountNumber;
@@ -123,6 +106,7 @@ public class BankCustomer {
         checkingsBalance  = cAccount.getBalance();
     }
 
+// -----------------------------------------------------------------------------
 
     public int getSavingsAccountNumber(){
         return savingsAccountNumber;
@@ -140,6 +124,51 @@ public class BankCustomer {
     public void setSavingsBalance(double balance){
         sAccount.setBalance(balance);
         savingsBalance  = sAccount.getBalance();
+    }
+
+
+// -----------------------------------------------------------------------------
+
+
+    public void checkBalance() {
+        totalBalance = savingsBalance + checkingsBalance;
+        System.out.println("Savings Account Balance: " + "$ " + savingsBalance);
+        System.out.println("Checkings Account Balance: " + "$ " + checkingsBalance);
+        System.out.println("Total Balance: " + "$ " + totalBalance);
+    }
+
+
+    public void transferBalance(){
+
+    }
+
+
+// -----------------------------------------------------------------------------
+
+
+    public void checkingsDeposit(double amount){
+        cAccount.addBalance(amount);
+        checkingsBalance = cAccount.getBalance();
+        cAccount.setBalance(checkingsBalance);
+    }
+
+    public void checkingsWithdraw(double amount){
+        cAccount.minusBalance(amount);
+        checkingsBalance = cAccount.getBalance();
+        cAccount.setBalance(checkingsBalance);
+    }
+
+
+    public void savingsDeposit(double amount){
+        sAccount.addBalance(amount);
+        savingsBalance = sAccount.getBalance();
+        sAccount.setBalance(savingsBalance);
+    }
+
+    public void savingsWithdraw(double amount){
+        sAccount.minusBalance(amount);
+        savingsBalance = sAccount.getBalance();
+        sAccount.setBalance(savingsBalance);
     }
 
 }
