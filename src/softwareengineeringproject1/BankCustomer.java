@@ -3,18 +3,18 @@
 import java.util.*;
 
 public class BankCustomer {
-
+    //We can delete some of these variables, thier job can be done with function calls to cAccount and sAccount
     private String name;
     private String email;
     private String address;
     private int cardNumber;
     private int pin;
-    private double totalBalance;
+    private double totalBalance;//Needed?
 
     private int savingsAccountNumber;
-    private double savingsBalance;
+    private double savingsBalance;//Needed?
     private int checkingsAccountNumber;
-    private double checkingsBalance;
+    private double checkingsBalance;//Needed?
 
     private checkingAccount cAccount = new checkingAccount();
     private savingsAccount sAccount = new savingsAccount();
@@ -98,7 +98,8 @@ public class BankCustomer {
     }
 
     public double getCheckingsBalance(){
-        return checkingsBalance;
+        //return checkingsBalance;       This was returning the variable in customer, should be from the checking object.
+        return cAccount.getBalance();
     }
 
     public void setCheckingsBalance(double balance){
@@ -118,7 +119,8 @@ public class BankCustomer {
     }
 
     public double getSavingsBalance(){
-        return savingsBalance;
+        //return savingsBalance;
+        return sAccount.getBalance();
     }
 
     public void setSavingsBalance(double balance){
@@ -129,7 +131,7 @@ public class BankCustomer {
 
 // -----------------------------------------------------------------------------
 
-
+    //If we calculate this with sAccount and cAccount function we wont need to stare any data in BankCustomer
     public void checkBalance() {
         totalBalance = savingsBalance + checkingsBalance;
         System.out.println("Checkings Account Balance: " + "$ " + checkingsBalance);
@@ -176,10 +178,11 @@ public class BankCustomer {
 // -----------------------------------------------------------------------------
 
 
-    public void checkingsDeposit(double amount){
+    public void checkingsDeposit(double amount){//Delete all output later
+        System.out.println("BankCustomer: $"+amount);
         cAccount.addBalance(amount);
-        checkingsBalance = cAccount.getBalance();
-        cAccount.setBalance(checkingsBalance);
+        //checkingsBalance = cAccount.getBalance();
+        //cAccount.setBalance(checkingsBalance);
     }
 
     public void checkingsWithdraw(double amount){
@@ -189,10 +192,12 @@ public class BankCustomer {
     }
 
 
-    public void savingsDeposit(double amount){
+    public void savingsDeposit(double amount){//Delete all output later.
+                System.out.println("BankCustomer: $"+amount);
+
         sAccount.addBalance(amount);
-        savingsBalance = sAccount.getBalance();
-        sAccount.setBalance(savingsBalance);
+        //savingsBalance = sAccount.getBalance();
+        //sAccount.setBalance(savingsBalance);
     }
 
     public void savingsWithdraw(double amount){

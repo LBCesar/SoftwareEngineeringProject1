@@ -8,7 +8,7 @@ import java.util.*;
 public class Display extends ATM{
 // public class Display{
     
-    public void screen() {
+    public int screen() {
 
         System.out.println("PROJECT ATM\n");
         System.out.print("Account number:\n");
@@ -34,8 +34,8 @@ public class Display extends ATM{
                 withdrawDisplay();
             }
 
-            if (choice == 3) {
-                depositDisplay();
+            if (choice == 3) {//This is our keypad, user chose 3, send 3 back to the atm.
+                return 3;
             }
 
             if (choice == 4) {
@@ -43,7 +43,7 @@ public class Display extends ATM{
             }
 
         }
-
+        return 0;
     }
 
 
@@ -58,8 +58,8 @@ public class Display extends ATM{
 
 
     public void mainMenu(){
-        System.out.println("\n|_____________________|");
-        System.out.println("|     Main Menu         |");
+        System.out.println("\n_____________________");
+        System.out.println("|     Main Menu        |");
         System.out.println("|[1] View Balance      |");
         System.out.println("|[2] Withdraw Cash     |");
         System.out.println("|[3] Deposit Cash      |");
@@ -74,9 +74,11 @@ public class Display extends ATM{
         //checkings or savings?
     }
 
-    public void depositDisplay() {
-        System.out.print("Deposit amount: ");
+    public float depositDisplay() {
+        System.out.println("Deposit amount: 50 ");
+        float amount=50;//Replace this with user input.
         //checkings or savings?
+        return amount;
     }
 
     public void withdrawDisplay() {

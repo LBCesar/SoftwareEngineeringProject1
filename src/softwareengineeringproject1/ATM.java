@@ -2,13 +2,39 @@
 import java.util.*;
 
 public class ATM {
+    Display screen;
+    BankCustomer me=new BankCustomer();
+    
 
-    Display screen = new Display();
+    public ATM(){//Might not need.
+        this.me=bc();
 
-
-    public void start() {//Calls the display class.
-        screen.screen();
     }
+    private ATM(BankCustomer me) {//Made this constructor to load in a customer, if we can find a more graceful way to load in it would be cool.
+        System.out.println("Customer loaded in");
+        this.screen = new Display();
+        this.me = me;
+        start();
+    }
+
+    public BankCustomer bc(){//just for testing, delete later.
+        return me;
+    }
+    public final void start() {//Calls the display class.
+        int choice=screen.screen();//Our screen is the keypad, we are waiting for input
+        if(choice==3){//Choices return here and we call more displays if needed
+            float amount=screen.depositDisplay();//Our depositDisplay() returns the user input for deposit amount
+            this.deposit(amount);//Now that we have the amount, call the deposit() function in ATM
+        }
+    }
+        public void deposit(float amount) {//Here i handle all the "Logic" that is needed for a deposit. 
+            System.out.println("Were back int ATM with $"+amount);
+            //if(savings)
+            me.savingsDeposit(amount);//Call BankCustmoer->savingsDeposit()->Which calls our savingsAccount.java function addBalance();
+            //if(checkings)
+            me.checkingsDeposit(amount);
+            
+        }
 
 
     public static void main(String[] args) {
@@ -68,6 +94,14 @@ public class ATM {
         me.transferBalance();
         System.out.println("Check Balance after transfer");
         customer.get(0).checkBalance();
+        
+        //================Delete Later. 
+        System.out.println("NEW\n\n\nBefore ATM: $" + customer.get(0).getCheckingsBalance());
+        System.out.println("Before ATM: $" + customer.get(0).getSavingsBalance());    
+        ATM a= new ATM(me);
+        BankCustomer bc=a.bc();
+        System.out.println("After ATM: $" + bc.getCheckingsBalance());
+        System.out.println("After ATM: $" + bc.getSavingsBalance());
 
     }
 

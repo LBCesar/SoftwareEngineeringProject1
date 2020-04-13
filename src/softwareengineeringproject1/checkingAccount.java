@@ -16,7 +16,9 @@ public class checkingAccount {
 
 
     public void addBalance(double amount){
+               System.out.println("Checkings\nBefore:" + balance);
         balance += amount;
+        System.out.println("After:" + balance);
     }
 
 
