@@ -3,27 +3,19 @@ import java.util.*;
 
 public class ATM {
 
-    private double amount;
-   
-
-    public ATM(){
-        
-    }
+    Display screen = new Display();
 
 
     public void start() {//Calls the display class.
-        Display screen = new Display();
         screen.screen();
     }
 
 
-    public void transfer(double amount){
-
-    }
-
     public static void main(String[] args) {
 
         BankCustomer me = new BankCustomer();
+
+        System.out.println("Customer Details");
         me.setName("lil Kanye");
         me.setEmail("dontgiveahoot@hoot.hoo");
         me.setAddress("1919 KayneWest@jtriseltunoob");
@@ -49,25 +41,42 @@ public class ATM {
         System.out.println("Savings Balance: " + "$" + customer.get(0).getSavingsBalance());
 
         System.out.println();
+        System.out.println("Current Customer Balance");
         customer.get(0).checkBalance();
         System.out.println();
 
+        System.out.println("Deposit/Withdraw");
         me.checkingsDeposit(100);
-        System.out.println("After Deposit checkings " + 100 + " : $" + customer.get(0).getCheckingsBalance());
+        System.out.println("After Checkings deposit $" + 100 + " : $" + customer.get(0).getCheckingsBalance());
 
         me.checkingsWithdraw(150);
-        System.out.println("After Checkings withdraw " + 150 + " : $"  + customer.get(0).getCheckingsBalance());
+        System.out.println("After Checkings withdraw $" + 150 + " : $"  + customer.get(0).getCheckingsBalance());
 
         me.savingsDeposit(100);
-        System.out.println("After Deposit checkings " + 100 + " : $" + customer.get(0).getSavingsBalance());
+        System.out.println("After Savings deposit $" + 100 + " : $" + customer.get(0).getSavingsBalance());
 
         me.savingsWithdraw(150);
-        System.out.println("After Deposit checkings " + 150 + " : $" + customer.get(0).getSavingsBalance());
+        System.out.println("After Savings withdraw $" + 150 + " : $" + customer.get(0).getSavingsBalance());
 
         System.out.println();
+        System.out.println("Check Balance");
         customer.get(0).checkBalance();
         System.out.println();
+
+        System.out.println("Check Balance before transfer");
+        customer.get(0).checkBalance();
+        me.transferBalance();
+        System.out.println("Check Balance after transfer");
+        customer.get(0).checkBalance();
 
     }
 
 }
+
+
+/**
+ * Self Note: 
+ * Log in window
+ * money should be only two decimal place
+ * 
+ */

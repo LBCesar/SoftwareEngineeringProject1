@@ -132,13 +132,43 @@ public class BankCustomer {
 
     public void checkBalance() {
         totalBalance = savingsBalance + checkingsBalance;
-        System.out.println("Savings Account Balance: " + "$ " + savingsBalance);
         System.out.println("Checkings Account Balance: " + "$ " + checkingsBalance);
+        System.out.println("Savings Account Balance: " + "$ " + savingsBalance);
         System.out.println("Total Balance: " + "$ " + totalBalance);
     }
 
 
     public void transferBalance(){
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Transfer Balance");
+
+        // System.out.println("1. Transfer from checkings to savings");
+        // System.out.println("2. Transfer from savings to checkings");
+
+        // int option = scan.nextInt();
+        int option = 1;
+        double transferAmount;          // user input transfer amount
+        double t;                       // a dummy transfer variable
+
+        if(option == 1){
+            System.out.println("Transfering from checkings to savings: $50.00");
+            // System.out.print("Enter the amount you want to transfer: ");
+            // transferAmount = scan.nextDouble();
+            transferAmount = 50;
+            
+            checkingsWithdraw(transferAmount);
+            savingsDeposit(transferAmount);
+        }
+
+        else if(option == 2){
+            System.out.println("Transfering from savings to checkings");
+            // System.out.print("Enter the amount you want to transfer: ");
+            transferAmount = scan.nextDouble();
+
+            savingsWithdraw(transferAmount);
+            checkingsDeposit(transferAmount);
+        }
 
     }
 

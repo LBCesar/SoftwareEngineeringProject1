@@ -2,10 +2,11 @@
  * 
  */
 
- import java.util.*;
+import java.io.IOException;
+import java.util.*;
 
-// public class Display extends ATM{
-public class Display{
+public class Display extends ATM{
+// public class Display{
     
     public void screen() {
 
@@ -42,6 +43,11 @@ public class Display{
             }
 
         }
+
+    }
+
+
+    public void Login() throws IOException{
 
     }
 
@@ -86,12 +92,6 @@ public class Display{
 
     public void transferDisplay() {
         System.out.println(" We will trasnfer here");
-    }
-
-
-    public static void main(String[] args) {
-        Display dis = new Display();
-        dis.screen();
     }
 
 }
