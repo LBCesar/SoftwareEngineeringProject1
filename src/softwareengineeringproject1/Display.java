@@ -112,8 +112,54 @@ public class Display extends ATM{
 
     }
 
-    public void transferDisplay() {
-        System.out.println(" We will trasnfer here");
+    public void transferDisplay(BankCustomer me) {
+        System.out.println("Which account do you wish to transfer money to:");
+        System.out.println("1. Checkings to Savings");
+        System.out.println("2. Savings to Checkings");
+        
+        int choice = getIntRange(1,2);
+        int amount = 0;
+        double oldbalance = 0.0;
+        if(choice == 1) 
+        {
+        	System.out.println("Enter the amount you wish to tranfer: ");
+        	amount = getIntRange(0, Integer.MAX_VALUE);
+        	oldbalance = me.getCheckingsBalance();
+        	if(me.getCheckingsBalance() - amount >= 0)
+        	{
+        		me.getCheckingAccount().minusBalance(amount);
+        		me.getSavingsAccount().addBalance(amount);
+        		System.out.println("Old Balance: " + oldbalance);
+        		System.out.println("New Balance:" + me.getSavingsBalance());
+        	}
+        	else
+        	{
+        		System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
+        	}
+        }
+        
+        else if(choice == 2)
+        {
+        	System.out.println("Enter the amount you wish to tranfer: ");
+        	amount = getIntRange(0, Integer.MAX_VALUE);
+        	oldbalance = me.getCheckingsBalance();
+        	if(me.getCheckingsBalance() - amount >= 0)
+        	{
+        		
+        		me.getCheckingAccount().addBalance(amount);
+        		me.getSavingsAccount().minusBalance(amount);
+        		System.out.println("Old Balance: " + oldbalance);
+        		System.out.println("New Balance:" + me.getCheckingsBalance());
+        	}
+        	else
+        	{
+        		System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
+        	}
+        	
+        }
+        else 
+        	System.out.println("Sorry, that is not an option");
+        	
     }
 
 }
