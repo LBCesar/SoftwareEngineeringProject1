@@ -177,6 +177,14 @@ public class BankCustomer {
 
 // -----------------------------------------------------------------------------
 
+     public checkingAccount getCheckingAccount()
+    {
+    	return cAccount;
+    }
+    public savingsAccount getSavingsAccount()
+    {
+    	return sAccount;
+    }
 
     public void checkingsDeposit(double amount){//Delete all output later
         cAccount.addBalance(amount);
