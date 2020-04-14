@@ -179,7 +179,6 @@ public class BankCustomer {
 
 
     public void checkingsDeposit(double amount){//Delete all output later
-        System.out.println("BankCustomer: $"+amount);
         cAccount.addBalance(amount);
         //checkingsBalance = cAccount.getBalance();
         //cAccount.setBalance(checkingsBalance);
@@ -193,7 +192,6 @@ public class BankCustomer {
 
 
     public void savingsDeposit(double amount){//Delete all output later.
-                System.out.println("BankCustomer: $"+amount);
 
         sAccount.addBalance(amount);
         //savingsBalance = sAccount.getBalance();
