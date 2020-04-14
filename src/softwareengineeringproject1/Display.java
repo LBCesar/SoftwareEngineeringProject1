@@ -45,7 +45,27 @@ public class Display extends ATM{
         }
         return 0;
     }
-
+    //takes in a value between low and high from the user 
+	//to make sure nothing breaks
+	public int getIntRange( int low, int high ) {
+		Scanner in = new Scanner( System.in );
+		int input = 0;
+		boolean valid = false;
+		while( !valid ) {
+			if( in.hasNextInt() ) {
+				input = in.nextInt();
+				if( input <= high && input >= low ) {
+					valid = true;
+				} else {
+					System.out.println( "Invalid Range." );
+				}
+			} else {
+				in.next(); //clear invalid string
+				System.out.println( "Invalid Input." );
+			}
+		}
+		return input;
+	}
 
     public void Login() throws IOException{
 
