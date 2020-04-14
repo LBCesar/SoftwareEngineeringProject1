@@ -8,47 +8,31 @@ import java.util.*;
 public class Display extends ATM{
 // public class Display{
     
-    public int screen() {
+    public int screen() {//This is sort of now the keypad/ main landing zone.
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 
-        System.out.println("PROJECT ATM\n");
-        System.out.print("Account number:\n");
-        System.out.print("Enter pin:\n");
+        //mainMenu();Might remove this forever
+        int choice = myObj.nextInt();
+        //int choice =3;//Uncomment above, and delete this when testing is finished.
 
-        while (true) {
-            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-
-            mainMenu();
-
-            int choice = myObj.nextInt();
-
-            if (choice < 0 || choice > 4) {
-                System.out.println("Exit.");
-                break;
-            }
-
-            if (choice == 1) {
-                checkBalanceDisplay();
-            }
-
-            if (choice == 2) {
-                withdrawDisplay();
-            }
-
-            if (choice == 3) {//This is our keypad, user chose 3, send 3 back to the atm.
-                return 3;
-            }
-
-            if (choice == 4) {
-                transferDisplay();
-            }
-
-        }
-        return 0;
+        return choice;
     }
 
 
-    public void Login() throws IOException{
-
+    public int[] Login(){
+        System.out.println("PROJECT ATM\n");
+        int f[]=new int[2];
+        System.out.print("Account number:\n");//Need function for verifying.
+        f[0]=this.screen();
+        System.out.print("Enter pin:\n");//Need function for verifying.
+        f[1]=this.screen();
+        return f;
+    }
+    public int checkOrSave(){
+        System.out.println("We need to figure out how to choose between checking and savings\nIs here a good spot?");
+        System.out.println("1)Checking\n2)Savings");
+        int f=this.screen();
+        return f;
     }
 
 
@@ -75,9 +59,10 @@ public class Display extends ATM{
     }
 
     public float depositDisplay() {
-        System.out.println("Deposit amount: 50 ");
-        float amount=50;//Replace this with user input.
+        System.out.println("Deposit amount:");
+        //float amount=50;//Replace this with user input.
         //checkings or savings?
+        float amount=this.screen();
         return amount;
     }
 
