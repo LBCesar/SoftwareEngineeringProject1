@@ -82,6 +82,8 @@ public class Display extends ATM{
         System.out.println("|[2] $40      [6] $120|");
         System.out.println("|[3] $60      [7] $140|");
         System.out.println("|[4] $80      [8] Exit|");
+        int choice = this.screen();
+        return choice;
     }
 
     public void transferDisplay(BankCustomer me) {
