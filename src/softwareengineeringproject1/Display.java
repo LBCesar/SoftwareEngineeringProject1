@@ -9,11 +9,7 @@ public class Display extends ATM{
     
     public int screen() {//This is sort of now the keypad/ main landing zone.
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-
-        //mainMenu();Might remove this forever
         int choice = myObj.nextInt();
-        //int choice =3;//Uncomment above, and delete this when testing is finished.
-
         return choice;
     }
 
@@ -42,9 +38,9 @@ public class Display extends ATM{
     public int[] Login(){
         System.out.println("Please enter your account number and PIN");
         int f[]=new int[2];
-        System.out.print("Account Number:\n");      //Need function for verifying.
+        System.out.print("Account Number(1234): ");
         f[0]=this.screen();
-        System.out.print("Enter PIN:\n");           //Need function for verifying.
+        System.out.print("Enter PIN(1111): ");
         f[1]=this.screen();
         return f;
     }

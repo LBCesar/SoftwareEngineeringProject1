@@ -8,13 +8,11 @@ public class ATM {
 
     Display screen;
     BankCustomer me = new BankCustomer();
-    
 
     public ATM(){
 
     }
     
-
     private ATM(BankCustomer me) {      //Made this constructor to load in a customer, if we can find a more graceful way to load in it would be cool.
         System.out.println("Customer loaded in\n");
         this.screen = new Display();
@@ -31,18 +29,25 @@ public class ATM {
         //the Display function Login() will create an array with the first element
         //being the accoutn number and the secon element being the pin
         //this way we get both in one call, if either is wrong we dont allow entry anyways.
-        
+        boolean clear=false;
+        int tries=0;
         int f[] = new int[2];
-        f = screen.Login();
-        System.out.println("Account Number: " + f[0]);
-        System.out.println("PIN: " + f[1]);
-
-            //if(f[0]==our number)
-            // if(f[1]==our pin)
-            //      continue->
-
         
-        
+        while (tries < 3) {
+            f = screen.Login();
+            if (f[0] == me.getCardNumber()) {
+                if (f[1] == me.getPIN()) {
+                    clear = true;
+                    break;
+                }
+            }
+            System.out.println("Incorrect Account number or PIN!");
+            tries++;
+        }
+        if(!clear){
+            System.exit(0);
+        }
+        while(true){
         //We need to pick either checking or savings, idk what the best approach is, i made this one up.
         int accountChoice = screen.checkOrSave();
         //maybe we can have some booleans that we can use to satisfiy conditions later on.
@@ -90,6 +95,7 @@ public class ATM {
             System.out.println("Exit program");
             System.exit(0);
         }
+        }
     }
 
     public void witdraw(float amount){
@@ -125,8 +131,8 @@ public class ATM {
         me.setName("lil Kanye");
         me.setEmail("dontgiveahoot@hoot.hoo");
         me.setAddress("1919 KayneWest@jtriseltunoob");
-        me.setCardNumber(6325);
-        me.setPIN(9111);
+        me.setCardNumber(1234);
+        me.setPIN(1111);
         me.setCheckingsAccountNumber(4545);
         me.setCheckingsBalance(150);
         me.setSavingsAccountNumber(4546);
