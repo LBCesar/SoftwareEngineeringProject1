@@ -23,16 +23,10 @@ public class ATM {
     public BankCustomer bc(){          //just for testing, delete later.
         return me;
     }
-
-    public final void start() {//Calls the display class.
-        //these next two lines are a quick way of dealing with login
-        //the Display function Login() will create an array with the first element
-        //being the accoutn number and the secon element being the pin
-        //this way we get both in one call, if either is wrong we dont allow entry anyways.
+    public boolean login(){
         boolean clear=false;
         int tries=0;
         int f[] = new int[2];
-        
         while (tries < 3) {
             f = screen.Login();
             if (f[0] == me.getCardNumber()) {
@@ -44,7 +38,15 @@ public class ATM {
             System.out.println("Incorrect Account number or PIN!");
             tries++;
         }
-        if(!clear){
+        return clear;
+    }
+    public final void start() {//Calls the display class.
+        //these next two lines are a quick way of dealing with login
+        //the Display function Login() will create an array with the first element
+        //being the accoutn number and the secon element being the pin
+        //this way we get both in one call, if either is wrong we dont allow entry anyways.
+
+        if(!this.login()){
             System.exit(0);
         }
         while(true){
