@@ -44,6 +44,12 @@ public class Display extends ATM{
         f[1]=this.screen();
         return f;
     }
+    
+    public int rerun(){
+        System.out.println("Would you like to make another transaction?");
+        System.out.println("[1] Yes\n[2] No");
+        return this.screen();
+    }
 
     public int checkOrSave(){
         System.out.println("\nPlease choose an account to make your transaction");
@@ -52,7 +58,6 @@ public class Display extends ATM{
         int f = this.screen();
         return f;
     }
-
 
     public void mainMenu(){
         System.out.println("[1] View Balance      ");
@@ -73,7 +78,7 @@ public class Display extends ATM{
         return amount;
     }
 
-    public void withdrawDisplay() {
+    public int withdrawDisplay() {
         System.out.println("|[1] $20      [5] $100|");
         System.out.println("|[2] $40      [6] $120|");
         System.out.println("|[3] $60      [7] $140|");

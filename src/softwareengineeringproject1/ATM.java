@@ -40,82 +40,71 @@ public class ATM {
         }
         return clear;
     }
-    public final void start() {//Calls the display class.
-        //these next two lines are a quick way of dealing with login
-        //the Display function Login() will create an array with the first element
-        //being the accoutn number and the secon element being the pin
-        //this way we get both in one call, if either is wrong we dont allow entry anyways.
-
+    public final void start() {
+        //Login
         if(!this.login()){
             System.exit(0);
         }
+        //Loop
         while(true){
-        //We need to pick either checking or savings, idk what the best approach is, i made this one up.
+        //Do we want checkings or savings?
         int accountChoice = screen.checkOrSave();
-        //maybe we can have some booleans that we can use to satisfiy conditions later on.
-        boolean check=false;
-        boolean save=false;
-
-        if(accountChoice == 1){
-            //checking
-            check = true;
-            System.out.println("Checkings Account");
-        }
-
-        else if(accountChoice == 2){
-            //savings
-            save=true;
-            System.out.println("Savings Account");
-        }
-
-        // System.out.println("Checkings:" + check);
-        // System.out.println("Savings:" + save);
-              
-        
+        //Print the main menu
         screen.mainMenu();
-        int choice = screen.screen();   //Our screen is the keypad, we are waiting for input
+        //Our screen is the keypad, we are waiting for input
+        int choice = screen.screen();
 
-        if(choice == 1){                // view balance
-            screen.checkBalanceDisplay();
-            balance(accountChoice);
-        }
-
-        else if(choice == 2){
-            int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
-            if(choiceWithdraw == 1) {						//choice 1 will withdraw $20
-            	this.withdraw(20, accountChoice);
-            } else if(choiceWithdraw == 2) {				//choice 2 will withdraw $40
-            	this.withdraw(40, accountChoice);
-            } else if(choiceWithdraw == 3) {				//choice 3 will withdraw $60
-            	this.withdraw(60, accountChoice);
-            } else if(choiceWithdraw == 4) {				//choice 4 will withdraw $80
-            	this.withdraw(80, accountChoice);
-            } else if(choiceWithdraw == 5) {				//choice 5 will withdraw $100
-            	this.withdraw(100, accountChoice);
-            } else if(choiceWithdraw == 6) {				//choice 6 will withdraw $120
-            	this.withdraw(120, accountChoice);
-            } else if(choiceWithdraw == 7) {				//choice 7 will withdraw $140
-            	this.withdraw(140, accountChoice);
+            switch (choice) {
+                case 1://Balance
+                    balance(accountChoice);
+                    break;
+                case 2://Withdraw
+                    withdraw(accountChoice);
+                    break;
+                case 3://Deposit
+                    deposit(accountChoice);
+                    break;
+                case 4://Transfer
+                    transfer(accountChoice);
+                    break;
+                default://Exit
+                    System.out.println("Exit program");
+                    System.exit(0);
             }
-        }
-
-        else if(choice == 3){                       //Choices return here and we call more displays if needed
-            float amount = screen.depositDisplay(); //Our depositDisplay() returns the user input for deposit amount
-            this.deposit(amount, accountChoice);    //Now that we have the amount, call the deposit() function in ATM
-        }
-
-        else if(choice == 4){
-            // transfer
-        }
-
-        else{
+         //Do we want to run again ?
+        if(screen.rerun()!=1){
             System.out.println("Exit program");
             System.exit(0);
         }
-        }
+      }
     }
 
-    public void witdraw(float amount, int accountChoice){
+    public void withdraw(int accountChoice){
+                    int amount=0;
+                    int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
+                    if(choiceWithdraw == 1) {						//choice 1 will withdraw $20
+                        //this.withdraw(20, accountChoice);
+                        amount=20;
+                    } else if(choiceWithdraw == 2) {				//choice 2 will withdraw $40
+                        //this.withdraw(40, accountChoice);
+                        amount=40;
+                    } else if(choiceWithdraw == 3) {				//choice 3 will withdraw $60
+                        //this.withdraw(60, accountChoice);
+                        amount=60;
+                    } else if(choiceWithdraw == 4) {				//choice 4 will withdraw $80
+                        //this.withdraw(80, accountChoice);
+                        amount=80;
+                    } else if(choiceWithdraw == 5) {				//choice 5 will withdraw $100
+                        //this.withdraw(100, accountChoice);
+                        amount=100;
+                    } else if(choiceWithdraw == 6) {				//choice 6 will withdraw $120
+                        //this.withdraw(120, accountChoice);
+                        amount=120;
+                    } else if(choiceWithdraw == 7) {				//choice 7 will withdraw $140;
+                        //this.withdraw(140, accountChoice);
+                        amount=140;
+                    } 
+ 
         if (accountChoice == 1) {
         	if(me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
         		me.checkingsWithdraw(amount);
@@ -134,9 +123,11 @@ public class ATM {
 
     public void transfer(float amount){
         // Andre
+        System.out.println("Adding this here so i can make it switch case!");
     }
 
     public void balance(int accountChoice){
+        screen.checkBalanceDisplay();
         if (accountChoice == 1)
             System.out.println("Checkings Account Balance: $" + me.getCheckingsBalance());
 
@@ -144,12 +135,13 @@ public class ATM {
             System.out.println("Savings Account Balance: $" + me.getSavingsBalance());
     }
 
-    public void deposit(float amount, int accountChoice) {  // Here i handle all the "Logic" that is needed for a deposit. 
+    public void deposit(int accountChoice) {
+        float amount = screen.depositDisplay(); //Our depositDisplay() returns the user input for deposit amount
         if (accountChoice == 1)
             me.checkingsDeposit(amount);    
         
         if(accountChoice == 2)
-            me.savingsDeposit(amount);        // Call BankCustmoer->savingsDeposit()->Which calls our savingsAccount.java function addBalance();
+            me.savingsDeposit(amount);
     }
 
 
@@ -224,4 +216,20 @@ public class ATM {
     }
 
 }
+//                    int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
+//                    if(choiceWithdraw == 1) {						//choice 1 will withdraw $20
+//                        this.withdraw(20, accountChoice);
+//                    } else if(choiceWithdraw == 2) {				//choice 2 will withdraw $40
+//                        this.withdraw(40, accountChoice);
+//                    } else if(choiceWithdraw == 3) {				//choice 3 will withdraw $60
+//                        this.withdraw(60, accountChoice);
+//                    } else if(choiceWithdraw == 4) {				//choice 4 will withdraw $80
+//                        this.withdraw(80, accountChoice);
+//                    } else if(choiceWithdraw == 5) {				//choice 5 will withdraw $100
+//                        this.withdraw(100, accountChoice);
+//                    } else if(choiceWithdraw == 6) {				//choice 6 will withdraw $120
+//                        this.withdraw(120, accountChoice);
+//                    } else if(choiceWithdraw == 7) {				//choice 7 will withdraw $140
+//                        this.withdraw(140, accountChoice);
+//                    }   
 
