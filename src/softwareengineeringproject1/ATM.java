@@ -81,7 +81,22 @@ public class ATM {
         }
 
         else if(choice == 2){
-            // Withdraw cash
+            int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
+            if(choiceWithdraw == 1) {						//choice 1 will withdraw $20
+            	this.withdraw(20, accountChoice);
+            } else if(choiceWithdraw == 2) {				//choice 2 will withdraw $40
+            	this.withdraw(40, accountChoice);
+            } else if(choiceWithdraw == 3) {				//choice 3 will withdraw $60
+            	this.withdraw(60, accountChoice);
+            } else if(choiceWithdraw == 4) {				//choice 4 will withdraw $80
+            	this.withdraw(80, accountChoice);
+            } else if(choiceWithdraw == 5) {				//choice 5 will withdraw $100
+            	this.withdraw(100, accountChoice);
+            } else if(choiceWithdraw == 6) {				//choice 6 will withdraw $120
+            	this.withdraw(120, accountChoice);
+            } else if(choiceWithdraw == 7) {				//choice 7 will withdraw $140
+            	this.withdraw(140, accountChoice);
+            }
         }
 
         else if(choice == 3){                       //Choices return here and we call more displays if needed
@@ -100,8 +115,21 @@ public class ATM {
         }
     }
 
-    public void witdraw(float amount){
-        // Shaan
+    public void witdraw(float amount, int accountChoice){
+        if (accountChoice == 1) {
+        	if(me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
+        		me.checkingsWithdraw(amount);
+        	} else {
+        		System.out.println("Insufficient Funds!");
+        	}
+        }
+        if (accountChoice == 2) {
+        	if(me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
+        		me.savingsWithdraw(amount);
+        	} else {
+        		System.out.println("Insufficient Funds!");
+        	}
+        }
     }
 
     public void transfer(float amount){
