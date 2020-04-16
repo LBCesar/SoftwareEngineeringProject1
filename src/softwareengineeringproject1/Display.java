@@ -80,13 +80,28 @@ public class Display {
         return choice;
     }
 
-    public int transferDisplay() {
-        System.out.println("Which account do you wish to transfer money to:");
-        System.out.println("[1] Checkings to Savings");
-        System.out.println("[2] Savings to Checkings");
+    public double transferDisplay(int choice) {
+		// System.out.println("Which account do you wish to transfer money to:");
+		// System.out.println("[1] Checkings to Savings");screen
+		// System.out.println("[2] Savings to Checkings");
+		
+		// int choice = getIntRange(1,2);
+		double amount = 0;
+		System.out.println();
 
-        int choice = screen(1, 2);
-        return choice;
+		if(choice == 1){
+			System.out.println("Transferring from Checkings to Savings");
+			// System.out.println("Enter the amount you wish to tranfer: ");
+		}
+		
+		else{
+			System.out.println("Transferring from Savings to Checkings");
+		}
 
-    }
+		System.out.println("Enter the amount you wish to tranfer: ");
+		amount = this.screen();
+		
+		return amount;
+
+	}
 }

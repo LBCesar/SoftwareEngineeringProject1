@@ -107,42 +107,48 @@ public class ATM {
         }
     }
 
-    public void transfer(int choice) {
+    public void transfer(int accountChoice){                // kinda fixed
 
-        int choice1 = screen.transferDisplay();
-        int amount = 0;
-        double oldbalance = 0.0;
-        if (choice == 1) {
-            System.out.println("Enter the amount you wish to tranfer: ");
-            //amount = getIntRange(0, Integer.MAX_VALUE);
-            amount = screen.screen(0, Integer.MAX_VALUE);
-            oldbalance = me.getCheckingsBalance();
-            if (me.getCheckingsBalance() - amount >= 0) {
+        double amount;
+
+        if(accountChoice == 1) 
+        {
+            // amount = getIntRange(0, Integer.MAX_VALUE);
+            amount = screen.transferDisplay(accountChoice);
+            if(me.getCheckingsBalance() - amount >= 0)
+            {
                 me.getCheckingAccount().minusBalance(amount);
                 me.getSavingsAccount().addBalance(amount);
-                System.out.println("Old Balance: " + oldbalance);
-                System.out.println("New Balance:" + me.getSavingsBalance());
-            } else {
+                // me.checkingsWithdraw(amount);
+                // me.savingsDeposit(amount);
+            }
+            else
+            {
                 System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
             }
-        } else if (choice == 2) {
-            System.out.println("Enter the amount you wish to tranfer: ");
-            //amount = getIntRange(0, Integer.MAX_VALUE);
-            amount = screen.screen(0, Integer.MAX_VALUE);
-            oldbalance = me.getCheckingsBalance();
-            if (me.getCheckingsBalance() - amount >= 0) {
+        }
+
+        else if(accountChoice == 2)
+        {
+            // System.out.println("Enter the amount you wish to tranfer: ");
+            // amount = getIntRange(0, Integer.MAX_VALUE);
+            amount = screen.transferDisplay(accountChoice);
+            if(me.getSavingsBalance() - amount >= 0)
+            {
 
                 me.getCheckingAccount().addBalance(amount);
                 me.getSavingsAccount().minusBalance(amount);
-                System.out.println("Old Balance: " + oldbalance);
-                System.out.println("New Balance:" + me.getCheckingsBalance());
-            } else {
+                // me.checkingsDeposit(amount);
+                // me.savingsWithdraw(amount);
+            }
+            else
+            {
                 System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
             }
 
-        } else {
-            System.out.println("Sorry, that is not an option");
         }
+        else 
+            System.out.println("Sorry, that is not an option");
 
     }
 
