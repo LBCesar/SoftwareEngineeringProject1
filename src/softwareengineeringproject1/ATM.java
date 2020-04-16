@@ -73,38 +73,45 @@ public class ATM {
     }
 
     public void withdraw(int accountChoice) {
-        int amount = 0;
-        int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
-        if (choiceWithdraw == 1) {					//choice 1 will withdraw $20
-            amount = 20;
-        } else if (choiceWithdraw == 2) {				//choice 2 will withdraw $40
-            amount = 40;
-        } else if (choiceWithdraw == 3) {				//choice 3 will withdraw $60
-            amount = 60;
-        } else if (choiceWithdraw == 4) {				//choice 4 will withdraw $80
-            amount = 80;
-        } else if (choiceWithdraw == 5) {				//choice 5 will withdraw $100
-            amount = 100;
-        } else if (choiceWithdraw == 6) {				//choice 6 will withdraw $120
-            amount = 120;
-        } else if (choiceWithdraw == 7) {				//choice 7 will withdraw $140;
-            amount = 140;
-        }
-
-        if (accountChoice == 1) {
-            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
-                me.checkingsWithdraw(amount);
-            } else {
-                System.out.println("Insufficient Funds!");
-            }
-        }
-        if (accountChoice == 2) {
-            if (me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
-                me.savingsWithdraw(amount);
-            } else {
-                System.out.println("Insufficient Funds!");
-            }
-        }
+    	boolean suf = false;
+    	while(!suf) {
+	        int amount = 0;
+	        int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
+	        if (choiceWithdraw == 1) {					//choice 1 will withdraw $20
+	            amount = 20;
+	        } else if (choiceWithdraw == 2) {				//choice 2 will withdraw $40
+	            amount = 40;
+	        } else if (choiceWithdraw == 3) {				//choice 3 will withdraw $60
+	            amount = 60;
+	        } else if (choiceWithdraw == 4) {				//choice 4 will withdraw $80
+	            amount = 80;
+	        } else if (choiceWithdraw == 5) {				//choice 5 will withdraw $100
+	            amount = 100;
+	        } else if (choiceWithdraw == 6) {				//choice 6 will withdraw $120
+	            amount = 120;
+	        } else if (choiceWithdraw == 7) {				//choice 7 will withdraw $140
+	            amount = 140;
+	        } else {										//any other choice will withdraw $0 and ask to go back to menu
+	        	amount = 0;
+	        }
+	
+	        if (accountChoice == 1) {
+	            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
+	                me.checkingsWithdraw(amount);
+	                suf = true;
+	            } else {
+	                System.out.println("Insufficient Funds!");
+	            }
+	        }
+	        if (accountChoice == 2) {
+	            if (me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
+	                me.savingsWithdraw(amount);
+	                suf = true;
+	            } else {
+	                System.out.println("Insufficient Funds!");
+	            }
+	        }
+    	}
     }
 
     public void transfer(int accountChoice){                // kinda fixed
