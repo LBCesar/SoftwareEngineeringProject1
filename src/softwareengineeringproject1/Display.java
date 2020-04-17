@@ -33,7 +33,7 @@ public class Display {
     }
 
     public int rerun() {
-        System.out.println("Would you like to make another transaction?");
+        System.out.println("\nWould you like to make another transaction?");
         System.out.println("[1] Yes\n[2] No");
         return this.screen(1, 2);
     }
@@ -43,6 +43,12 @@ public class Display {
         System.out.println("[1] Checkings Account");
         System.out.println("[2] Savings Account");
         int f = this.screen(1, 2);
+
+        if(f == 1)
+            System.out.println("\nCheckings Account");
+        else
+            System.out.println("\nSavings Account");
+
         return f;
     }
 
@@ -56,16 +62,17 @@ public class Display {
     }
 
     public void checkBalanceDisplay() {
-        System.out.println("Display Current Balance");          // Could be possible to print current system time format
+        System.out.println("\nDisplay Current Balance");          // Could be possible to print current system time format
     }
 
     public float depositDisplay() {
-        System.out.println("Deposit amount:");
+        System.out.println("\nDeposit Amount:");
         float amount = this.screen(1, 9999);
         return amount;
     }
 
     public int withdrawDisplay() {
+        System.out.println("\nWithdraw Amount");
         System.out.println("|[1] $20      [5] $100|");
         System.out.println("|[2] $40      [6] $120|");
         System.out.println("|[3] $60      [7] $140|");
@@ -74,13 +81,28 @@ public class Display {
         return choice;
     }
 
-    public int transferDisplay() {
-        System.out.println("Which account do you wish to transfer money to:");
-        System.out.println("[1] Checkings to Savings");
-        System.out.println("[2] Savings to Checkings");
+    public double transferDisplay(int choice) {
+		// System.out.println("Which account do you wish to transfer money to:");
+		// System.out.println("[1] Checkings to Savings");screen
+		// System.out.println("[2] Savings to Checkings");
+		
+		// int choice = getIntRange(1,2);
+		double amount = 0;
+		System.out.println();
 
-        int choice = screen(1, 2);
-        return choice;
+		if(choice == 1){
+			System.out.println("Transferring from Checkings to Savings");
+			// System.out.println("Enter the amount you wish to tranfer: ");
+		}
+		
+		else{
+			System.out.println("Transferring from Savings to Checkings");
+		}
 
-    }
+		System.out.println("Enter the amount you wish to tranfer: ");
+		amount = this.screen(1, 9999);
+		
+		return amount;
+
+	}
 }

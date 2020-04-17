@@ -73,87 +73,100 @@ public class ATM {
     }
 
     public void withdraw(int accountChoice) {
-        int amount = 0;
-        int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
-        if (choiceWithdraw == 1) {					//choice 1 will withdraw $20
-            amount = 20;
-        } else if (choiceWithdraw == 2) {				//choice 2 will withdraw $40
-            amount = 40;
-        } else if (choiceWithdraw == 3) {				//choice 3 will withdraw $60
-            amount = 60;
-        } else if (choiceWithdraw == 4) {				//choice 4 will withdraw $80
-            amount = 80;
-        } else if (choiceWithdraw == 5) {				//choice 5 will withdraw $100
-            amount = 100;
-        } else if (choiceWithdraw == 6) {				//choice 6 will withdraw $120
-            amount = 120;
-        } else if (choiceWithdraw == 7) {				//choice 7 will withdraw $140;
-            amount = 140;
-        }
-
-        if (accountChoice == 1) {
-            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
-                me.checkingsWithdraw(amount);
-            } else {
-                System.out.println("Insufficient Funds!");
-            }
-        }
-        if (accountChoice == 2) {
-            if (me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
-                me.savingsWithdraw(amount);
-            } else {
-                System.out.println("Insufficient Funds!");
-            }
-        }
+    	boolean suf = false;
+    	while(!suf) {
+	        int amount = 0;
+	        int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
+	        if (choiceWithdraw == 1) {					//choice 1 will withdraw $20
+	            amount = 20;
+	        } else if (choiceWithdraw == 2) {				//choice 2 will withdraw $40
+	            amount = 40;
+	        } else if (choiceWithdraw == 3) {				//choice 3 will withdraw $60
+	            amount = 60;
+	        } else if (choiceWithdraw == 4) {				//choice 4 will withdraw $80
+	            amount = 80;
+	        } else if (choiceWithdraw == 5) {				//choice 5 will withdraw $100
+	            amount = 100;
+	        } else if (choiceWithdraw == 6) {				//choice 6 will withdraw $120
+	            amount = 120;
+	        } else if (choiceWithdraw == 7) {				//choice 7 will withdraw $140
+	            amount = 140;
+	        } else {										//any other choice will withdraw $0 and ask to go back to menu
+	        	amount = 0;
+	        }
+	
+	        if (accountChoice == 1) {
+	            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
+	                me.checkingsWithdraw(amount);
+	                suf = true;
+	            } else {
+	                System.out.println("Insufficient Funds!");
+	            }
+	        }
+	        if (accountChoice == 2) {
+	            if (me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
+	                me.savingsWithdraw(amount);
+	                suf = true;
+	            } else {
+	                System.out.println("Insufficient Funds!");
+	            }
+	        }
+    	}
     }
 
-    public void transfer(int choice) {
+    public void transfer(int accountChoice){        // andre look at this. idk if this makes proper sense.
 
-        int choice1 = screen.transferDisplay();
-        int amount = 0;
-        double oldbalance = 0.0;
-        if (choice == 1) {
-            System.out.println("Enter the amount you wish to tranfer: ");
-            //amount = getIntRange(0, Integer.MAX_VALUE);
-            amount = screen.screen(0, Integer.MAX_VALUE);
-            oldbalance = me.getCheckingsBalance();
-            if (me.getCheckingsBalance() - amount >= 0) {
+        double amount;
+
+        if(accountChoice == 1) 
+        {
+            // amount = getIntRange(0, Integer.MAX_VALUE);
+            amount = screen.transferDisplay(accountChoice);
+            if(me.getCheckingsBalance() - amount >= 0)
+            {
                 me.getCheckingAccount().minusBalance(amount);
                 me.getSavingsAccount().addBalance(amount);
-                System.out.println("Old Balance: " + oldbalance);
-                System.out.println("New Balance:" + me.getSavingsBalance());
-            } else {
+                // me.checkingsWithdraw(amount);
+                // me.savingsDeposit(amount);
+            }
+            else
+            {
                 System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
             }
-        } else if (choice == 2) {
-            System.out.println("Enter the amount you wish to tranfer: ");
-            //amount = getIntRange(0, Integer.MAX_VALUE);
-            amount = screen.screen(0, Integer.MAX_VALUE);
-            oldbalance = me.getCheckingsBalance();
-            if (me.getCheckingsBalance() - amount >= 0) {
+        }
+
+        else if(accountChoice == 2)
+        {
+            // System.out.println("Enter the amount you wish to tranfer: ");
+            // amount = getIntRange(0, Integer.MAX_VALUE);
+            amount = screen.transferDisplay(accountChoice);
+            if(me.getSavingsBalance() - amount >= 0)
+            {
 
                 me.getCheckingAccount().addBalance(amount);
                 me.getSavingsAccount().minusBalance(amount);
-                System.out.println("Old Balance: " + oldbalance);
-                System.out.println("New Balance:" + me.getCheckingsBalance());
-            } else {
+                // me.checkingsDeposit(amount);
+                // me.savingsWithdraw(amount);
+            }
+            else
+            {
                 System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
             }
 
-        } else {
-            System.out.println("Sorry, that is not an option");
         }
+        else 
+            System.out.println("Sorry, that is not an option");
 
     }
 
     public void balance(int accountChoice) {
         screen.checkBalanceDisplay();
         if (accountChoice == 1) {
-            System.out.println("Checkings Account Balance: $" + me.getCheckingsBalance());
+            System.out.println("Checkings Balance: $" + me.getCheckingsBalance());
         }
 
         if (accountChoice == 2) {
-            System.out.println("Savings Account Balance: $" + me.getSavingsBalance());
+            System.out.println("Savings Balance: $" + me.getSavingsBalance());
         }
     }
 
