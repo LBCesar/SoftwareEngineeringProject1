@@ -114,7 +114,7 @@ public class ATM {
     	}
     }
 
-    public void transfer(int accountChoice){                // kinda fixed
+    public void transfer(int accountChoice){        // andre look at this. idk if this makes proper sense.
 
         double amount;
 
@@ -162,11 +162,11 @@ public class ATM {
     public void balance(int accountChoice) {
         screen.checkBalanceDisplay();
         if (accountChoice == 1) {
-            System.out.println("Checkings Account Balance: $" + me.getCheckingsBalance());
+            System.out.println("Checkings Balance: $" + me.getCheckingsBalance());
         }
 
         if (accountChoice == 2) {
-            System.out.println("Savings Account Balance: $" + me.getSavingsBalance());
+            System.out.println("Savings Balance: $" + me.getSavingsBalance());
         }
     }
 
