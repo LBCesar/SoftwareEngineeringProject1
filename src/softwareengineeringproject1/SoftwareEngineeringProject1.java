@@ -288,3 +288,23 @@ public class SoftwareEngineeringProject1 {
 
 
 */
+
+/*//shaan og if statements
+	        if (choiceWithdraw == 1) {					//choice 1 will withdraw $20
+	            amount = 20;
+	        } else if (choiceWithdraw == 2) {				//choice 2 will withdraw $40
+	            amount = 40;
+	        } else if (choiceWithdraw == 3) {				//choice 3 will withdraw $60
+	            amount = 60;
+	        } else if (choiceWithdraw == 4) {				//choice 4 will withdraw $80
+	            amount = 80;
+	        } else if (choiceWithdraw == 5) {				//choice 5 will withdraw $100
+	            amount = 100;
+	        } else if (choiceWithdraw == 6) {				//choice 6 will withdraw $120
+	            amount = 120;
+	        } else if (choiceWithdraw == 7) {				//choice 7 will withdraw $140
+	            amount = 140;
+	        } else {										//any other choice will withdraw $0 and ask to go back to menu
+	        	amount = 0;
+	        }
+*/

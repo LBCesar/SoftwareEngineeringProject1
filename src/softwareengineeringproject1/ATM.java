@@ -30,7 +30,7 @@ public class ATM {
                     break;
                 }
             }
-            System.out.println("Incorrect Account number or PIN!");
+            screen.loginError();
             tries++;
         }
         return clear;
@@ -39,6 +39,7 @@ public class ATM {
     public final void start() {
         //Login
         if (!this.login()) {
+            screen.exit();
             System.exit(0);
         }
         //Loop
@@ -61,12 +62,12 @@ public class ATM {
                     transfer(accountChoice);
                     break;
                 default://Exit
-                    System.out.println("Exit program");
+                    screen.exit();
                     System.exit(0);
             }
             //Do we want to run again ?
             if (screen.rerun() != 1) {
-                System.out.println("Exit program");
+                screen.exit();
                 System.exit(0);
             }
         }
@@ -77,30 +78,47 @@ public class ATM {
     	while(!suf) {
 	        int amount = 0;
 	        int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
-	        if (choiceWithdraw == 1) {					//choice 1 will withdraw $20
-	            amount = 20;
-	        } else if (choiceWithdraw == 2) {				//choice 2 will withdraw $40
-	            amount = 40;
-	        } else if (choiceWithdraw == 3) {				//choice 3 will withdraw $60
-	            amount = 60;
-	        } else if (choiceWithdraw == 4) {				//choice 4 will withdraw $80
-	            amount = 80;
-	        } else if (choiceWithdraw == 5) {				//choice 5 will withdraw $100
-	            amount = 100;
-	        } else if (choiceWithdraw == 6) {				//choice 6 will withdraw $120
-	            amount = 120;
-	        } else if (choiceWithdraw == 7) {				//choice 7 will withdraw $140
-	            amount = 140;
-	        } else {										//any other choice will withdraw $0 and ask to go back to menu
-	        	amount = 0;
-	        }
+                switch (choiceWithdraw) {
+                    case 1:
+                        //choice 1 will withdraw $20
+                        amount = 20;
+                        break;
+                    case 2:
+                        //choice 2 will withdraw $40
+                        amount = 40;
+                        break;
+                    case 3:
+                        //choice 3 will withdraw $60
+                        amount = 60;
+                        break;
+                    case 4:
+                        //choice 4 will withdraw $80
+                        amount = 80;
+                        break;
+                    case 5:
+                        //choice 5 will withdraw $100
+                        amount = 100;
+                        break;
+                    case 6:
+                        //choice 6 will withdraw $120
+                        amount = 120;
+                        break;
+                    case 7:
+                        //choice 7 will withdraw $140
+                        amount = 140;
+                        break;
+                    default:
+                        //any other choice will withdraw $0 and ask to go back to menu
+                        amount = 0;
+                        break;
+                }
 	
 	        if (accountChoice == 1) {
 	            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
 	                me.checkingsWithdraw(amount);
 	                suf = true;
 	            } else {
-	                System.out.println("Insufficient Funds!");
+	                screen.fundsError();
 	            }
 	        }
 	        if (accountChoice == 2) {
@@ -108,7 +126,7 @@ public class ATM {
 	                me.savingsWithdraw(amount);
 	                suf = true;
 	            } else {
-	                System.out.println("Insufficient Funds!");
+	                screen.fundsError();
 	            }
 	        }
     	}
@@ -131,7 +149,7 @@ public class ATM {
             }
             else
             {
-                System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
+                screen.fundsError();
             }
         }
 
@@ -150,23 +168,29 @@ public class ATM {
             }
             else
             {
-                System.out.println("Sorry, you dont have sufficent funds for this tranfer.");
+                screen.fundsError();
             }
-
         }
-        else 
-            System.out.println("Sorry, that is not an option");
-
     }
 
+//    public void balance(int accountChoice) {
+//        screen.checkBalanceDisplay();
+//        if (accountChoice == 1) {
+//            System.out.println("Checkings Balance: $" + me.getCheckingsBalance());
+//        }
+//
+//        if (accountChoice == 2) {
+//            System.out.println("Savings Balance: $" + me.getSavingsBalance());
+//        }
+//    }
     public void balance(int accountChoice) {
-        screen.checkBalanceDisplay();
         if (accountChoice == 1) {
-            System.out.println("Checkings Balance: $" + me.getCheckingsBalance());
+            screen.checkBalanceDisplay(accountChoice,me.getCheckingsBalance());
         }
 
         if (accountChoice == 2) {
-            System.out.println("Savings Balance: $" + me.getSavingsBalance());
+            screen.checkBalanceDisplay(accountChoice,me.getSavingsBalance());
+
         }
     }
 
@@ -195,15 +219,8 @@ public class ATM {
         me.setSavingsAccountNumber(4546);
         me.setSavingsBalance(100);
 
-        //================Delete Later.
-        System.out.println("NEW\n\n\nInitial Checkings Balance: $" + me.getCheckingsBalance());
-        System.out.println("Initial Savings Balance: $" + me.getSavingsBalance());
 
         ATM a = new ATM(me);
-        BankCustomer bc = a.bc();
-
-        System.out.println("After Checkings Balance: $" + bc.getCheckingsBalance());
-        System.out.println("After Savings Balance: $" + bc.getSavingsBalance());
 
     }
 

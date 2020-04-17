@@ -3,18 +3,17 @@
 import java.util.*;
 
 public class BankCustomer {
-    //We can delete some of these variables, thier job can be done with function calls to cAccount and sAccount
     private String name;
     private String email;
     private String address;
     private int cardNumber;
     private int pin;
-    private double totalBalance;//Needed?
+    //private double totalBalance;//Needed?
 
-    private int savingsAccountNumber;
-    private double savingsBalance;//Needed?
-    private int checkingsAccountNumber;
-    private double checkingsBalance;//Needed?
+    //private int savingsAccountNumber;
+    //private double savingsBalance;//Needed?
+    //private int checkingsAccountNumber;
+    //private double checkingsBalance;//Needed?
 
     private checkingAccount cAccount = new checkingAccount();
     private savingsAccount sAccount = new savingsAccount();
@@ -30,10 +29,14 @@ public class BankCustomer {
         address = a;
         cardNumber = c;
         pin = p;
-        checkingsAccountNumber = a1;
-        checkingsBalance = b1;
-        savingsAccountNumber = a2;
-        savingsBalance = b2;
+        //checkingsAccountNumber = a1;
+        cAccount.setAccountNumber(a1);
+        //checkingsBalance = b1;
+        cAccount.setBalance(b1);
+        //savingsAccountNumber = a2;
+        sAccount.setAccountNumber(a2);
+        //savingsBalance = b2;
+        sAccount.setBalance(b2);
     }
 
 
@@ -88,34 +91,49 @@ public class BankCustomer {
 // -----------------------------------------------------------------------------    
 
 
+//    public int getCheckingsAccountNumber(){
+//        return checkingsAccountNumber;
+//    }
     public int getCheckingsAccountNumber(){
-        return checkingsAccountNumber;
+        return cAccount.getAccountNumber();
     }
 
+//    public void setCheckingsAccountNumber(int cAccNumber){
+//        cAccount.setAccountNumber(cAccNumber);
+//        checkingsAccountNumber = cAccount.getAccountNumber();
+//    }
     public void setCheckingsAccountNumber(int cAccNumber){
         cAccount.setAccountNumber(cAccNumber);
-        checkingsAccountNumber = cAccount.getAccountNumber();
     }
 
     public double getCheckingsBalance(){
-        //return checkingsBalance;       This was returning the variable in customer, should be from the checking object.
+        //return checkingsBalance;      
         return cAccount.getBalance();
     }
 
+//    public void setCheckingsBalance(double balance){
+//        cAccount.setBalance(balance);
+//        checkingsBalance  = cAccount.getBalance();
+//    }
     public void setCheckingsBalance(double balance){
         cAccount.setBalance(balance);
-        checkingsBalance  = cAccount.getBalance();
     }
 
 // -----------------------------------------------------------------------------
 
+//    public int getSavingsAccountNumber(){
+//        return savingsAccountNumber;
+//    }
     public int getSavingsAccountNumber(){
-        return savingsAccountNumber;
+        return sAccount.getAccountNumber();
     }
 
+//    public void setSavingsAccountNumber(int sAccNumber){
+//        sAccount.setAccountNumber(sAccNumber);
+//        savingsAccountNumber = sAccount.getAccountNumber();
+//    }
     public void setSavingsAccountNumber(int sAccNumber){
         sAccount.setAccountNumber(sAccNumber);
-        savingsAccountNumber = sAccount.getAccountNumber();
     }
 
     public double getSavingsBalance(){
@@ -123,56 +141,59 @@ public class BankCustomer {
         return sAccount.getBalance();
     }
 
+//    public void setSavingsBalance(double balance){
+//        sAccount.setBalance(balance);
+//        savingsBalance  = sAccount.getBalance();
+//    }
     public void setSavingsBalance(double balance){
         sAccount.setBalance(balance);
-        savingsBalance  = sAccount.getBalance();
     }
 
 
 // -----------------------------------------------------------------------------
 
-    //If we calculate this with sAccount and cAccount function we wont need to stare any data in BankCustomer
-    public void checkBalance() {
-        totalBalance = savingsBalance + checkingsBalance;
-        System.out.println("Checkings Account Balance: " + "$ " + checkingsBalance);
-        System.out.println("Savings Account Balance: " + "$ " + savingsBalance);
-        System.out.println("Total Balance: " + "$ " + totalBalance);
-    }
-
-
-    public void transferBalance(){
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Transfer Balance");
-
-        // System.out.println("1. Transfer from checkings to savings");
-        // System.out.println("2. Transfer from savings to checkings");
-
-        // int option = scan.nextInt();
-        int option = 1;
-        double transferAmount;          // user input transfer amount
-        double t;                       // a dummy transfer variable
-
-        if(option == 1){
-            System.out.println("Transfering from checkings to savings: $50.00");
-            // System.out.print("Enter the amount you want to transfer: ");
-            // transferAmount = scan.nextDouble();
-            transferAmount = 50;
-            
-            checkingsWithdraw(transferAmount);
-            savingsDeposit(transferAmount);
-        }
-
-        else if(option == 2){
-            System.out.println("Transfering from savings to checkings");
-            // System.out.print("Enter the amount you want to transfer: ");
-            transferAmount = scan.nextDouble();
-
-            savingsWithdraw(transferAmount);
-            checkingsDeposit(transferAmount);
-        }
-
-    }
+//    //If we calculate this with sAccount and cAccount function we wont need to stare any data in BankCustomer
+//    public void checkBalance() {
+//        totalBalance = savingsBalance + checkingsBalance;
+//        System.out.println("Checkings Account Balance: " + "$ " + checkingsBalance);
+//        System.out.println("Savings Account Balance: " + "$ " + savingsBalance);
+//        System.out.println("Total Balance: " + "$ " + totalBalance);
+//    }
+//
+//
+//    public void transferBalance(){
+//        Scanner scan = new Scanner(System.in);
+//
+//        System.out.println("Transfer Balance");
+//
+//        // System.out.println("1. Transfer from checkings to savings");
+//        // System.out.println("2. Transfer from savings to checkings");
+//
+//        // int option = scan.nextInt();
+//        int option = 1;
+//        double transferAmount;          // user input transfer amount
+//        double t;                       // a dummy transfer variable
+//
+//        if(option == 1){
+//            System.out.println("Transfering from checkings to savings: $50.00");
+//            // System.out.print("Enter the amount you want to transfer: ");
+//            // transferAmount = scan.nextDouble();
+//            transferAmount = 50;
+//            
+//            checkingsWithdraw(transferAmount);
+//            savingsDeposit(transferAmount);
+//        }
+//
+//        else if(option == 2){
+//            System.out.println("Transfering from savings to checkings");
+//            // System.out.print("Enter the amount you want to transfer: ");
+//            transferAmount = scan.nextDouble();
+//
+//            savingsWithdraw(transferAmount);
+//            checkingsDeposit(transferAmount);
+//        }
+//
+//    }
 
 
 // -----------------------------------------------------------------------------
@@ -192,12 +213,14 @@ public class BankCustomer {
         //cAccount.setBalance(checkingsBalance);
     }
 
+//    public void checkingsWithdraw(double amount){
+//        cAccount.minusBalance(amount);
+//        checkingsBalance = cAccount.getBalance();
+//        cAccount.setBalance(checkingsBalance);
+//    }
     public void checkingsWithdraw(double amount){
         cAccount.minusBalance(amount);
-        checkingsBalance = cAccount.getBalance();
-        cAccount.setBalance(checkingsBalance);
     }
-
 
     public void savingsDeposit(double amount){//Delete all output later.
 
@@ -206,10 +229,13 @@ public class BankCustomer {
         //sAccount.setBalance(savingsBalance);
     }
 
+//    public void savingsWithdraw(double amount){
+//        sAccount.minusBalance(amount);
+//        savingsBalance = sAccount.getBalance();
+//        sAccount.setBalance(savingsBalance);
+//    }
     public void savingsWithdraw(double amount){
         sAccount.minusBalance(amount);
-        savingsBalance = sAccount.getBalance();
-        sAccount.setBalance(savingsBalance);
     }
 
 }

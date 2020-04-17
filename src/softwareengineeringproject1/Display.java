@@ -61,8 +61,15 @@ public class Display {
         return this.screen(1, 5);
     }
 
-    public void checkBalanceDisplay() {
-        System.out.println("\nDisplay Current Balance");          // Could be possible to print current system time format
+    public void checkBalanceDisplay(int accountChoice,double amount) {
+        //System.out.println("\nDisplay Current Balance");          // Could be possible to print current system time format
+        if (accountChoice == 1) {
+            System.out.println("Checkings Balance: $" + amount);
+        }
+
+        if (accountChoice == 2) {
+            System.out.println("Savings Balance: $" + amount);
+        }
     }
 
     public float depositDisplay() {
@@ -105,4 +112,13 @@ public class Display {
 		return amount;
 
 	}
+    public void loginError(){
+        System.out.println("Incorrect Account number or PIN!");
+    }
+    public void fundsError(){
+        System.out.println("Insufficient Funds!");
+    }
+    public void exit(){
+        System.out.println("Goodbye!");
+    }
 }
