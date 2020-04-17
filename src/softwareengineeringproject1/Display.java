@@ -11,23 +11,17 @@ public class Display {
 
     public int screen(int low, int high) {//This is sort of now the keypad/ main landing zone.
         int choice = myObj.nextInt();
-        choice = getIntRange(choice, low, high);
-        return choice;
-    }
-
-    public int getIntRange(int input, int low, int high) {
         boolean valid = false;
         while (!valid) {
-            if (input <= high && input >= low) {
+            if (choice <= high && choice >= low) {
                 valid = true;
             } else {
                 System.out.println("Invalid Input.");
-                input = screen(low, high);
+                choice = screen(low, high);
             }
         }
-        return input;
+        return choice;
     }
-
     public int[] Login() {
         System.out.println("Please enter your account number and PIN");
         int f[] = new int[2];
