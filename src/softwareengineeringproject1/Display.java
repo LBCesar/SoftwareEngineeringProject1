@@ -1,8 +1,4 @@
 
-/**
- *
- */
-
 import java.util.*;
 
 public class Display {
@@ -22,7 +18,7 @@ public class Display {
         }
         return choice;
     }
-    public int[] Login() {
+    public int[] loginDisplay() {
         System.out.println("Please enter your account number and PIN");
         int f[] = new int[2];
         System.out.print("Account Number(1234): ");

@@ -1,9 +1,4 @@
 
-import java.io.IOException;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class ATM {
 
     Display screen = new Display();
@@ -14,31 +9,10 @@ public class ATM {
         start();
     }
 
-    public BankCustomer bc() {          //just for testing, delete later.
-        return me;
-    }
-
-    private boolean login() {
-        boolean clear = false;
-        int tries = 0;
-        int f[] = new int[2];
-        while (tries < 3) {
-            f = screen.Login();
-            if (f[0] == me.getCardNumber()) {
-                if (f[1] == me.getPIN()) {
-                    clear = true;
-                    break;
-                }
-            }
-            screen.loginError();
-            tries++;
-        }
-        return clear;
-    }
 
     public final void start() {
         //Login
-        if (!this.login()) {
+        if (!this.verifyLogin()) {
             screen.exit();
             System.exit(0);
         }
@@ -72,7 +46,24 @@ public class ATM {
             }
         }
     }
-
+    private boolean verifyLogin() {
+        boolean clear = false;
+        int tries = 0;
+        int f[] = new int[2];
+        while (tries < 3) {
+            f = screen.loginDisplay();
+            if (f[0] == me.getCardNumber()) {
+                if (f[1] == me.getPIN()) {
+                    clear = true;
+                    break;
+                }
+            }
+            screen.loginError();
+            tries++;
+        }
+        return clear;
+    }
+    
     public void withdraw(int accountChoice) {
     	boolean suf = false;
     	while(!suf) {

@@ -34,8 +34,8 @@ public class checkingAccount {
     }
     
 
-    public void setAccountNumber(int aNumber){
-        accountNumber = aNumber;
+    public void setAccountNumber(int accNumber){
+        accountNumber = accNumber;
     }
 
     public int getAccountNumber(){

@@ -35,17 +35,12 @@ public class savingsAccount {
     }
     
 
-    public void setAccountNumber(int assNumber){
-        accountNumber = assNumber;
+    public void setAccountNumber(int accNumber){
+        accountNumber = accNumber;
     }
 
     public int getAccountNumber(){
         return accountNumber;
-    }
-
-
-    public void hasMoney(){
-        
     }
        
 }
