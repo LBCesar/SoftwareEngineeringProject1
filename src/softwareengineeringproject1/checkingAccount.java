@@ -1,3 +1,4 @@
+
 /**
  * 
  * 
@@ -21,7 +22,10 @@ public class checkingAccount {
 
 
     public void minusBalance(double amount){
-        balance -= amount;
+    	if(balance - amount > 0)
+    		balance -= amount;
+    	else 
+    		System.out.println("Sorry, you dont have enough funds");
     }
 
 
@@ -34,8 +38,8 @@ public class checkingAccount {
     }
     
 
-    public void setAccountNumber(int accNumber){
-        accountNumber = accNumber;
+    public void setAccountNumber(int aNumber){
+        accountNumber = aNumber;
     }
 
     public int getAccountNumber(){
