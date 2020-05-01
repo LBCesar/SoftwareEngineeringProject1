@@ -1,11 +1,32 @@
 import java.text.DecimalFormat;
 import java.util.*;
-
+/**
+ * 
+ * @author Andre, Shaan, Cesar, Shoraj
+ * The Display class manages all console messages and inputs from the 
+ * user for the ATM class
+ */
 public class Display {
-
-    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+	/**
+	 * Scanner myObj: is a Scanner object that handles user input
+	 */
+    Scanner myObj = new Scanner(System.in);  
+    
+    /**
+     * DecimalFormat df2: is the object that handles all our formatting for our doubles
+     */
     DecimalFormat df2 = new DecimalFormat("#.##");
-
+    
+    /**
+     * 
+     * @param low     Lower bound for our input
+     * @param high    upper bound for our input
+     * @return User input between low and high
+     * 
+     * The user has to enter an integer value between our high and low
+     * parameters and if enters any number outside that scope the user
+     * is prompted to enter a value until the condition is met
+     */
     public int screen(int low, int high) {//This is sort of now the keypad/ main landing zone.
     	int input = 0;
 		boolean valid = false;
@@ -24,6 +45,13 @@ public class Display {
 		}
 		return input;
     }
+    /**
+     * 
+     * @return an array with account number and PIN inside
+     * 
+     * This function simply asks for the users Account Number
+     * and PIN Number. Then stores them in an array
+     */
     public int[] loginDisplay() {
     	System.out.println("****************************************************************");
         System.out.println("* Please enter your account number and PIN                     *");
@@ -36,7 +64,13 @@ public class Display {
         System.out.println("****************************************************************\n\n");
         return f;
     }
-
+    /**
+     * 
+     * @return returns and integer 1 for yes 2 for no
+     * 
+     * The user is prompted whether to continue their transaction
+     * or end it. 
+     */
     public int rerun() {
     	System.out.println("****************************************************************");
         System.out.println("*          Would you like to make another transaction?         *");
@@ -46,7 +80,13 @@ public class Display {
         System.out.println("****************************************************************");
         return this.screen(1, 2);
     }
-
+    /**
+     * 
+     * @return An integer 1 for checking account 2 for savings.
+     * 
+     * This function prompts the user to choose whether they want to use their 
+     * savings or checking account
+     */
     public int checkOrSave() {
     	System.out.println("****************************************************************");
     		
@@ -66,7 +106,13 @@ public class Display {
 
         return f; 
     }
-
+    /**
+     * 
+     * @return integer that user is prompted to used
+     * 
+     * This Function displays the main menu of our ATM and asks the user to 
+     * choose a banking option.
+     */
     public int mainMenu() {
     	System.out.println("****************************************************************");
     	System.out.println("*                      Banking Options                         *");
@@ -80,7 +126,13 @@ public class Display {
         System.out.println("****************************************************************\n\n");
         return this.screen(1, 5);
     }
-
+    /**
+     * 
+     * @param accountChoice Integer to figure out which account they are using
+     * @param amount Double that is the current amount the user has
+     * 
+     * This Function displays the balance of the users account that they wish to see. 
+     */
     public void checkBalanceDisplay(int accountChoice,double amount) {
     	
         if (accountChoice == 1) {
@@ -99,7 +151,13 @@ public class Display {
             System.out.println("****************************************************************\n\n");
         }
     }
-
+    /**
+     * 
+     * @return float value of the amount the user wants to deposit to their accounts
+     * 
+     * This function prompts the user to enter the amount of money they want to add to their account
+     * and returns it to the ATM class.
+     */
     public float depositDisplay() {
     	System.out.println("****************************************************************");
     	System.out.println("*                     Enter Deposit Amount                     *");
@@ -109,7 +167,13 @@ public class Display {
     	
         return amount;
     }
-
+    /**
+     * 
+     * @return The amount the user wants to withdraw from their account
+     * 
+     * This function prompts the user to choose between a set amount of money
+     * they want to withdraw from their accounts
+     */
     public int withdrawDisplay() {
 
         System.out.println("****************************************************************");
@@ -124,7 +188,15 @@ public class Display {
         int choice = this.screen(1, 8);
         return choice;
     }
-
+    /**
+     * 
+     * @param choice An integer representing the account type
+     * @param me   The BankCustomer that is currently using the ATM
+     * @return The amount of money the user wants to transfer between accounts
+     * 
+     * This function prompts the user to enter the amount the customer wants to transfer 
+     * between accounts.  
+     */
     public double transferDisplay(int choice, BankCustomer me) 
     {
 		
@@ -146,12 +218,19 @@ public class Display {
 		amount = this.screen(1, Integer.MAX_VALUE);
 		while(!(balance - amount >= 0))
 		{
-			System.out.printf("%-63s*\n","* You do not have sufficient funds, enter a different amount: ");
+			this.fundsError();
 			amount = this.screen(1,Integer.MAX_VALUE);
 		}
 		System.out.println("*                                                              *");
 		return amount;
     }
+    /**
+     * 
+     * @param saveBal double that represents the savings balance
+     * @param checkBal double that represents the checkings balance
+     * 
+     * This function simply displays both account balances
+     */
     public void dipalyBalances(double saveBal, double checkBal)
     {
     	
@@ -162,17 +241,30 @@ public class Display {
         System.out.println("*                                                              *");
         System.out.println("****************************************************************\n\n");
     }
+    /**
+     * This function diplays a login error
+     */
     public void loginError(){
     	System.out.println("\n\n****************************************************************");
         System.out.printf("%-63s*\n","*                   Incorrect Account number or PIN!");
         System.out.println("****************************************************************\n\n");
     }
+    /**
+     * This function displays an error if the user has insufficient funds in their account
+     */
     public void fundsError(){
 
     	System.out.println("\n\n****************************************************************");
         System.out.printf("%-63s*\n","*                   Insufficient Funds!");
         System.out.println("****************************************************************\n\n");
     }
+    /**
+     * 
+     * @param cBal double representing checkings balance
+     * @param sBal double representing savings balance
+     * 
+     * This is the exit screen that displays the final balances in both accounts of the bank customer.
+     */
     public void exit(double cBal, double sBal){
         System.out.println("****************************************************************");
     	System.out.println("*                 Have A Nice Day                              *");
