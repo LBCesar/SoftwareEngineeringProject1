@@ -241,6 +241,22 @@ public class Display {
         System.out.println("*                                                              *");
         System.out.println("****************************************************************\n\n");
     }
+    public void displayNewBalance(int accountChoice,double prevAmount,double currAmount){
+        if(accountChoice==1){
+            System.out.printf("%-63s*\n","* Old Checkings Balance: $" + df2.format(prevAmount));
+            System.out.printf("%-63s*\n","* New Checkings Balance: $" + df2.format(currAmount));
+            System.out.println("*                                                              *");
+            System.out.println("****************************************************************\n\n");
+        }
+        if(accountChoice==2){
+            System.out.printf("%-63s*\n","* Old Savings Balance: $" + df2.format(prevAmount));
+            System.out.printf("%-63s*\n","* New Savings Balance: $" + df2.format(currAmount));
+            System.out.println("*                                                              *");    
+            System.out.println("****************************************************************\n\n");
+        }
+    }
+    
+    
     /**
      * This function diplays a login error
      */

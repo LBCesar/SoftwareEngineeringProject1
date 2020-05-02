@@ -8,13 +8,9 @@ public class BankCustomer {
     private String address;
     private int cardNumber;
     private int pin;
-
+    //Customers are only allowed to have one checking and one savings account.
     private checkingAccount cAccount = new checkingAccount();
     private savingsAccount sAccount = new savingsAccount();
-
-    public BankCustomer(){
-
-    }
 
     public void BankCustomer(String n, String e, String a, int c, int p, int a1, double b1, int a2, double b2) {
         name = n;

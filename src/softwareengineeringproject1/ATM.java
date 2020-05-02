@@ -46,13 +46,15 @@ public class ATM {
             }
         }
     }
+    //Function will compare our entered credentials with 
+    //the credentials we have saved.
     private boolean verifyLogin() {
         boolean clear = false;
-        int tries = 0;
-        int f[] = new int[2];
+        int tries = 0;//User will only have 3 attempts to enter the correct information.
+        int f[] = new int[2];//This array will hold the 2 pieces of user input.
         while (tries < 3) {
-            f=screen.loginDisplay();
-            if (f[0] == me.getCardNumber()) {
+            f=screen.loginDisplay();//Prompt to enter account number and pin
+            if (f[0] == me.getCardNumber()) {//Compare entered and saved credentials
                 if (f[1] == me.getPIN()) {
                     clear = true;
                     break;
@@ -103,10 +105,12 @@ public class ATM {
                         amount = 0;
                         break;
                 }
-	
+                double prevAmount;
 	        if (accountChoice == 1) {
 	            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
+                        prevAmount = me.getCheckingsBalance();
 	                me.checkingsWithdraw(amount);
+                        screen.displayNewBalance(accountChoice,prevAmount, me.getCheckingsBalance());
 	                suf = true;
 	            } else {
 	                screen.fundsError();
@@ -114,13 +118,15 @@ public class ATM {
 	        }
 	        if (accountChoice == 2) {
 	            if (me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
+                        prevAmount = me.getSavingsBalance();
 	                me.savingsWithdraw(amount);
+                        screen.displayNewBalance(accountChoice,prevAmount, me.getCheckingsBalance());
 	                suf = true;
 	            } else {
 	                screen.fundsError();
 	            }
 	        }
-	        screen.dipalyBalances(me.getSavingsBalance(),me.getCheckingsBalance());
+	        //screen.dipalyBalances(me.getSavingsBalance(),me.getCheckingsBalance());
     	}
     }
 
@@ -181,22 +187,16 @@ public class ATM {
         float amount = screen.depositDisplay(); //Our depositDisplay() returns the user input for deposit amount
         double prevAmount;
         if (accountChoice == 1) {
-        	prevAmount = me.getCheckingsBalance();
+            prevAmount = me.getCheckingsBalance();
             me.checkingsDeposit(amount);
-            System.out.printf("%-63s*\n","* Old Checkings Balance: $" + df2.format(prevAmount));
-            System.out.printf("%-63s*\n","* New Checkings Balance: $" + df2.format(me.getCheckingsBalance()));
-            System.out.println("*                                                              *");
+            screen.displayNewBalance(accountChoice,prevAmount, me.getCheckingsBalance());
         }
 
         if (accountChoice == 2) {
-        	prevAmount = me.getSavingsBalance();
+            prevAmount = me.getSavingsBalance();
             me.savingsDeposit(amount);
-            System.out.printf("%-63s*\n","* Old Savings Balance: $" + df2.format(prevAmount));
-            System.out.printf("%-63s*\n","* New Savings Balance: $" + df2.format(me.getSavingsBalance()));
-            System.out.println("*                                                              *");             
-        }
-        
-        System.out.println("****************************************************************\n\n");
+            screen.displayNewBalance(accountChoice,prevAmount, me.getCheckingsBalance());         
+        }     
     }
 
     public static void main(String[] args) {
@@ -212,7 +212,6 @@ public class ATM {
         me.setCheckingsBalance(150);
         me.setSavingsAccountNumber(4546);
         me.setSavingsBalance(100);
-
 
         ATM a = new ATM(me);
 
