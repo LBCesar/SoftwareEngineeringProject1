@@ -184,7 +184,6 @@ public class Display {
         System.out.println("*  |[3] $60      [7] $140|                                     *");
         System.out.println("*  |[4] $80      [8] Exit|                                     *");
         System.out.println("*                                                              *");
-        System.out.println("****************************************************************");
         int choice = (int)this.screen(1, 8);
         return choice;
     }
