@@ -160,67 +160,70 @@ public class ATM {
      * @param accountChoice
      *        accountChoice is checkings or savings. 
      */
-    public void withdraw(int accountChoice) {
-
-        boolean suf = false;
-        
+   public void withdraw(int accountChoice) {
+    	boolean suf = false;
     	while(!suf) {
 	        int amount = 0;
-	        int choiceWithdraw = screen.withdrawDisplay();	//  prompts for an input for withdraw amount
+	        int choiceWithdraw = screen.withdrawDisplay();	//prompts for an input for withdraw amount
                 switch (choiceWithdraw) {
                     case 1:
-                        amount = 20;                        //  choice 1 will withdraw $20
+                        //choice 1 will withdraw $20
+                        amount = 20;
                         break;
                     case 2:
-                        amount = 40;                        //  choice 2 will withdraw $40
+                        //choice 2 will withdraw $40
+                        amount = 40;
                         break;
                     case 3:
-                        amount = 60;                        //  choice 3 will withdraw $60
+                        //choice 3 will withdraw $60
+                        amount = 60;
                         break;
                     case 4:
-                        amount = 80;                        //  choice 4 will withdraw $80
+                        //choice 4 will withdraw $80
+                        amount = 80;
                         break;
                     case 5:
-                        amount = 100;                       //  choice 5 will withdraw $100
+                        //choice 5 will withdraw $100
+                        amount = 100;
                         break;
                     case 6:
-                        amount = 120;                       //  choice 6 will withdraw $120
+                        //choice 6 will withdraw $120
+                        amount = 120;
                         break;
                     case 7:
-                        amount = 140;                       //  choice 7 will withdraw $140
+                        //choice 7 will withdraw $140
+                        amount = 140;
                         break;
                     default:
-                        amount = 0;                         //  any other choice will withdraw $0 and ask to go back to menu
+                        //any other choice will withdraw $0 and ask to go back to menu
+                        amount = 0;
                         break;
                 }
-
-                double prevAmount;
-
+	
 	        if (accountChoice == 1) {
-	            if (me.getCheckingsBalance() - amount >= 0) {	//  checks for sufficient funds
-                        prevAmount = me.getCheckingsBalance();
+	            if (me.getCheckingsBalance() - amount >= 0) {	//checks for sufficient funds
 	                me.checkingsWithdraw(amount);
-                        screen.displayNewBalance(accountChoice,prevAmount, me.getCheckingsBalance());
 	                suf = true;
+	                System.out.printf("%-63s*\n","*  New Checking Balance: $" + df2.format(me.getCheckingsBalance()));
+	                System.out.printf("%-63s*\n", "*");
+	                System.out.println("****************************************************************\n\n");
 	            } else {
 	                screen.fundsError();
 	            }
-            }
-            
+	        }
 	        if (accountChoice == 2) {
-	            if (me.getSavingsBalance() - amount >= 0) {		//  checks for sufficient funds
-                        prevAmount = me.getSavingsBalance();
+	            if (me.getSavingsBalance() - amount >= 0) {		//checks for sufficient funds
 	                me.savingsWithdraw(amount);
-                        screen.displayNewBalance(accountChoice,prevAmount, me.getCheckingsBalance());
 	                suf = true;
+	                System.out.printf("%-63s*\n","*  New Savings Balance: $" + df2.format(me.getSavingsBalance()));
+	                System.out.printf("%-63s*\n", "*");
+	                System.out.println("****************************************************************\n\n");
 	            } else {
 	                screen.fundsError();
 	            }
-            }
-            
-        }
-        
-    }       // end withdraw
+	        }
+    	}
+    }
 
     /**
      * Transfer allows the user to transfer money in between their checking and savings account
