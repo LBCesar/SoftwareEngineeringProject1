@@ -116,12 +116,15 @@ public class ATM {
      * @param accountChoice
      */
     public void balance(int accountChoice) {
+        double balance;
         if (accountChoice == 1) {
-            screen.checkBalanceDisplay(accountChoice,me.getCheckingsBalance());
+            balance=me.getCheckingsBalance();
+            screen.checkBalanceDisplay(accountChoice,balance);
         }
 
         if (accountChoice == 2) {
-            screen.checkBalanceDisplay(accountChoice,me.getSavingsBalance());
+            balance=me.getSavingsBalance();
+            screen.checkBalanceDisplay(accountChoice,balance);
 
         }
     }
