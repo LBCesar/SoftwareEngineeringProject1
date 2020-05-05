@@ -240,8 +240,10 @@ public class ATM {
         if(accountChoice == 1) {
             amount = screen.transferDisplay(accountChoice,me);
             if(me.getCheckingsBalance() - amount >= 0){
-                me.getCheckingAccount().minusBalance(amount);
-                me.getSavingsAccount().addBalance(amount);
+                //me.getCheckingAccount().minusBalance(amount);
+                me.checkingsWithdraw(amount);
+                //me.getSavingsAccount().addBalance(amount);
+                me.savingsDeposit(amount);
             }
             else{
                 screen.fundsError();
@@ -252,8 +254,10 @@ public class ATM {
             amount = screen.transferDisplay(accountChoice,me);
             if(me.getSavingsBalance() - amount >= 0){
 
-                me.getCheckingAccount().addBalance(amount);
-                me.getSavingsAccount().minusBalance(amount);
+                //me.getCheckingAccount().addBalance(amount);
+                me.checkingsDeposit(amount);
+                //me.getSavingsAccount().minusBalance(amount);
+                me.savingsWithdraw(amount);
             }
             else{
                 screen.fundsError();
