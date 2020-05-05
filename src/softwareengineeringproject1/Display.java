@@ -27,12 +27,12 @@ public class Display {
      * parameters and if enters any number outside that scope the user
      * is prompted to enter a value until the condition is met
      */
-    public int screen(int low, int high) {//This is sort of now the keypad/ main landing zone.
-    	int input = 0;
+    public double screen(int low, int high) {//This is sort of now the keypad/ main landing zone.
+    	double input = 0;
 		boolean valid = false;
 		while( !valid ) {
-			if( myObj.hasNextInt() ) {
-				input = myObj.nextInt();
+			if( myObj.hasNextDouble()) {
+				input = myObj.nextDouble();
 				if( input <= high && input >= low ) {
 					valid = true;
 				} else {
@@ -56,10 +56,10 @@ public class Display {
     	System.out.println("****************************************************************");
         System.out.println("* Please enter your account number and PIN                     *");
         int f[] = new int[2];
-        System.out.printf("%-63s*\n","* Account Number(1234):");
-        f[0] = this.screen(0, 9999);
-        System.out.printf("%-63s*\n","* Enter PIN(1111):");
-        f[1]=this.screen(0, 9999);
+        System.out.printf("%-63s*\n","* Account Number:");
+        f[0] = (int)this.screen(0, 9999);
+        System.out.printf("%-63s*\n","* Enter PIN:");
+        f[1]=(int)this.screen(0, 9999);
         System.out.println("*                                                              *");
         System.out.println("****************************************************************\n\n");
         return f;
@@ -78,7 +78,7 @@ public class Display {
         System.out.println("* [2] No                                                       *");
         System.out.println("*                                                              *");
         System.out.println("****************************************************************");
-        return this.screen(1, 2);
+        return (int)this.screen(1, 2);
     }
     /**
      * 
@@ -97,7 +97,7 @@ public class Display {
         System.out.println("*   [2] Savings Account                                        *");
         System.out.println("*                                                              *");
         System.out.println("****************************************************************");
-        int f = this.screen(1, 2);
+        int f = (int)this.screen(1, 2);
 
         if(f == 1)
             System.out.println("\nCheckings Account");
@@ -124,7 +124,7 @@ public class Display {
         System.out.println("* [5] Exit                                                     *");
         System.out.println("*                                                              *");
         System.out.println("****************************************************************\n\n");
-        return this.screen(1, 5);
+        return (int)this.screen(1, 5);
     }
     /**
      * 
@@ -158,11 +158,11 @@ public class Display {
      * This function prompts the user to enter the amount of money they want to add to their account
      * and returns it to the ATM class.
      */
-    public float depositDisplay() {
+    public double depositDisplay() {
     	System.out.println("****************************************************************");
     	System.out.println("*                     Enter Deposit Amount                     *");
         System.out.println("* Deposit Amount:                                              *");
-        float amount = this.screen(1, 9999);
+        double amount = this.screen(1, 9999);
         System.out.println("*                                                              *");
     	
         return amount;
@@ -185,7 +185,7 @@ public class Display {
         System.out.println("*  |[4] $80      [8] Exit|                                     *");
         System.out.println("*                                                              *");
         System.out.println("****************************************************************");
-        int choice = this.screen(1, 8);
+        int choice = (int)this.screen(1, 8);
         return choice;
     }
     /**
@@ -200,7 +200,7 @@ public class Display {
     public double transferDisplay(int choice, BankCustomer me) 
     {
 		
-		int amount = 0;
+		double amount = 0;
 		double balance = 0;
 		System.out.println("*                                                              *");
 	
@@ -231,7 +231,7 @@ public class Display {
      * 
      * This function simply displays both account balances
      */
-    public void dipalyBalances(double saveBal, double checkBal)
+    public void dipalyBalances(double saveBal, double checkBal)//delete?
     {
     	
     	System.out.println("****************************************************************");

@@ -133,7 +133,7 @@ public class ATM {
      */
     public void deposit(int accountChoice) {
 
-        float amount = screen.depositDisplay(); //  depositDisplay(): returns the user input for deposit amount
+        double amount = screen.depositDisplay(); //  depositDisplay(): returns the user input for deposit amount
         double prevAmount;
 
         if (accountChoice == 1) {
