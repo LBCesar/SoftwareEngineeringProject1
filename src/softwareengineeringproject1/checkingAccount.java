@@ -33,6 +33,7 @@ public class checkingAccount {
      * @param amount
      */
     public void minusBalance(double amount){
+    		if(balance - amount > 0)
     		balance -= amount;
     }
 
